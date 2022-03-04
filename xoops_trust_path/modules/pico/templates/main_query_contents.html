@@ -1,6 +1,11 @@
-<div class="pico_container" id="<{$mydirname}>_container">
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+
+<div class="pico_container" id="<{$mydirname}>_container">
+
+
 
 <!-- controllers -->
 <div class="pico_controllers">
@@ -27,8 +32,11 @@
 	<{$smarty.const._MD_PICO_ERR_NOCONTENTMATCHED}>
 <{/if}>
 
-<hr class="notification" />
-<{include file='db:system_notification_select.html'}>
+<hr>
+
+    <{* /////// NOTIFICATION \\\\\\\ *}>
+
+    <{include file='db:system_notification_select.html'}>
 
 </div>
 <!-- end module contents -->
