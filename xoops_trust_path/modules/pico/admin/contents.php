@@ -215,10 +215,7 @@ while ( $content_row = $db->fetchArray( $ors ) ) {
 	$contents4assign[] = $content4assign + $content_row;
 }
 
-//
-// display stage
-//
-
+// RENDER
 xoops_cp_header();
 include __DIR__ . '/mymenu.php';
 $tpl = new XoopsTpl();
@@ -243,5 +240,4 @@ $tpl->assign(
 	]
 );
 $tpl->display( 'db:' . $mydirname . '_admin_contents.html' );
-
 xoops_cp_footer();

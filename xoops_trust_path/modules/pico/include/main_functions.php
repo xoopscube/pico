@@ -190,7 +190,7 @@ function pico_main_make_cat_jumpbox_options( $mydirname, $whr4cat, $cat_selected
 function pico_main_trigger_event( $mydirname, $category, $item_id, $event, $extra_tags = [], $user_list = [], $omit_user_id = null ) {
 	require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3NotificationHandler.class.php';
 
-	$not_handler = &D3NotificationHandler::getInstance();
+	$not_handler = D3NotificationHandler::getInstance();
 
 	$not_handler->triggerEvent( $mydirname, 'pico', $category, $item_id, $event, $extra_tags, $user_list, $omit_user_id );
 }

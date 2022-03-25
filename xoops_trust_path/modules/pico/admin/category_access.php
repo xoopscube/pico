@@ -196,10 +196,7 @@ for ( $i = 0; $i < 5; $i ++ ) {
 }
 
 
-//
-// display stage
-//
-
+// RENDER
 xoops_cp_header();
 include __DIR__ . '/mymenu.php';
 $tpl = new XoopsTpl();

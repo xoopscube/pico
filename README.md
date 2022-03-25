@@ -7,9 +7,9 @@
 ![alt text](https://repository-images.githubusercontent.com/347963527/8c04d798-5562-4443-8e55-656298649231)
 
 
-MODULE | XooNIps 4
+MODULE | Pico
 ------------ | -------------
-Description | Pico content management module for XCL. D3 Module Duplication.
+Description | Pico content management module for XCL
 Render Engine | Smarty v2 and XCube Layout
 Version | 2.3.1
 Author | Original by Gijoe (https://peak.ne.jp/)
@@ -32,7 +32,7 @@ License | GPL
 
 ### Features
 
-**Pico** is a module for content management based on Duplicatable V3 (D3).
+**Pico** is a module for content management based on Duplicatable and directory-free V3 (D3).
 
 Though Pico functionally looks like a successor to TinyD, the Pico module is completely coded from scratch.
 

@@ -9,14 +9,14 @@
 
 <h2><{$smarty.const._MD_PICO_CATEGORYMANAGER}></h2>
 
-<h3><{$formtitle}></h3>
+<!--<h3><{$formtitle}></h3>-->
 
 <form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
     <{$gticket_hidden}>
 
 	<table class="outer">
-
-		<tr class="thead-dark" align="<{$smarty.const._ALIGN_START}>">
+	<thead>
+		<tr align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="category_pid"><{$smarty.const._MD_PICO_TH_CATEGORYPARENT}></label></th>
 			<td class="even">
 				<{if $category.id == 0}>
@@ -28,11 +28,12 @@
 				<{/if}>
 			</td>
 		</tr>
-
+		</thead>
+		<tbody>
 		<{if $mod_config.use_wraps_mode && $category.id != 0}>
-		<tr class="thead-dark" align="<{$smarty.const._ALIGN_START}>">
-			<th class="head"><label for="category_vpath"><{$smarty.const._MD_PICO_TH_VIRTUALPATH}></label></th>
-			<td class="even">
+		<tr align="<{$smarty.const._ALIGN_START}>">
+			<th><label for="category_vpath"><{$smarty.const._MD_PICO_TH_VIRTUALPATH}></label></th>
+			<td>
 				<input type="text" name="cat_vpath" id="category_vpath" size="60" value="<{$category.vpath}>" class="pico_ascii_only">
 				<{if $xoops_isadmin}>
 					<br>
@@ -44,7 +45,7 @@
 		</tr>
 		<{/if}>
 
-		<tr class="thead-dark" align="<{$smarty.const._ALIGN_START}>">
+		<tr align="<{$smarty.const._ALIGN_START}>">
 			<th class="head"><label for="category_title"><{$smarty.const._MD_PICO_TH_CATEGORYTITLE}></label></th>
 			<td class="even">
 				<input type="text" name="cat_title" id="category_title" size="60" maxlength="191" value="<{$category.title}>">
@@ -93,21 +94,24 @@
 				</div>
 			</td>
 		</tr>
-
+	</tbody>
+	<tfoot>
 		<tr>
 			<td></td>
-			<td><p class="pico_submit">
-				<input type="submit" class="ui-button" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+			<td>
 				<{if $page == 'categorymanager' && $children_count == 0}>
 				<input type="submit" class="ui-button delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECATEGORY}>')">
-				<{/if}></p></td>
-		</tr>
+				<{/if}>
+				<input type="submit" class="ui-button" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
 
+			</td>
+		</tr>
+	</tfoot>
 	</table>
 
 </form>
 
-<!-- Start Form Vaidation JavaScript //-->
+<!-- Start Form Validation JavaScript //-->
 <script type="text/javascript">
 <!--//
 function xoopsFormValidate_categoryform() {
@@ -116,6 +120,4 @@ function xoopsFormValidate_categoryform() {
 	return true;
 }
 //--></script>
-<!-- End Form Vaidation JavaScript //-->
-
 </div>

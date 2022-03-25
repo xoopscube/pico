@@ -81,7 +81,7 @@ function pico_delete_category( $mydirname, $cat_id, $delete_also_contents = true
 function pico_sync_cattree( $mydirname ) {
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	// rebuild tree informations
+	// rebuild tree information
 	[
 		$tree_array,
 		$subcattree,
