@@ -23,8 +23,8 @@ $myts = &PicoTextSanitizer::sGetInstance();
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 
-define( 'SPECIAL_CAT_ID_ALL', - 1 );
-define( 'SPECIAL_CAT_ID_DELETED', - 2 );
+const SPECIAL_CAT_ID_ALL = -1;
+const SPECIAL_CAT_ID_DELETED = -2;
 
 
 // get exportable modules

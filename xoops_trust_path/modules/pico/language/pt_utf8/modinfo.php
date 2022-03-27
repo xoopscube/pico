@@ -1,26 +1,13 @@
 <?php
-// Translation Info
-// *************************************************************** //
-// ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português
-// ############################################################### //
+// ## XOOPS Cube Legacy - Tradução para o Português
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
 // ## Website........: http://xoopscube.com.br
-// ############################################################### //
-// *************************************************************** //
+
 if( defined("FOR_XOOPS_LANG_CHECKER") ) $mydirname = "pico";
 $constpref = "_MI_" . strtoupper( $mydirname ) ;
 
 if(defined("FOR_XOOPS_LANG_CHECKER") || ! defined($constpref."_LOADED") ) {
-
-
-
-
-
-
-
-
 
 // Appended by Xoops Language Checker -GIJOE- in 2009-01-18 18:29:25
 define($constpref.'_COM_ORDER','Order of comment-integration');
@@ -150,6 +137,3 @@ define($constpref."_NOTIFY_GLOBAL_NEWCONTENTCAP","Notifique-me quando um artigo 
 define($constpref."_NOTIFY_GLOBAL_NEWCONTENTSBJ","[{X_SITENAME}] {X_MODULE} : Novo artigo");
 
 }
-
-
-?>
