@@ -263,7 +263,9 @@ function pico_sync_tags( $mydirname ) {
 		$label4sql       = $db->quoteString( $tag );
 		$content_ids4sql = implode( ',', $content_ids );
 		$count           = count( $content_ids );
-		$result          = $db->queryF( "INSERT INTO " . $db->prefix( $mydirname . "_tags" ) . " SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" );
+        // @todo @gigamaster replace INSERT INTO (results Duplicate entry for key 'PRIMARY')
+        // Using INSERT IGNORE INTO ref. https://www.tutorialspoint.com/mysql/mysql-handling-duplicates.htm
+		$result          = $db->queryF( "INSERT IGNORE INTO " . $db->prefix( $mydirname . "_tags" ) . " SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" );
 
 		if ( ! $result ) {
 			$db->queryF( "UPDATE " . $db->prefix( $mydirname . "_tags" ) . " SET count=$count,content_ids='$content_ids4sql',modified_time=UNIX_TIMESTAMP() WHERE label=$label4sql" );
@@ -692,7 +694,8 @@ function pico_get_requests4content( $mydirname, &$errors, $auto_approval = true,
 
 	// HTML Purifier in Protector (only for PHP5)
 	//'htmlpurify_except' ,
-	if ( 0 !== strpos( PHP_VERSION, 4 ) && file_exists( XOOPS_LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
+	//if ( 0 !== strpos( PHP_VERSION, 4 ) && file_exists( LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
+    if ( file_exists( LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
 		if ( is_object( $xoopsUser ) ) {
 			$purifier_enable = 0 == count( array_intersect( $xoopsUser->getGroups(), @$mod_config['htmlpurify_except'] ) );
 		} else {
@@ -703,7 +706,7 @@ function pico_get_requests4content( $mydirname, &$errors, $auto_approval = true,
 
 		if ( $purifier_enable ) {
 
-			require_once XOOPS_LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php';
+			require_once LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php';
 
 			$config = HTMLPurifier_Config::createDefault();
 

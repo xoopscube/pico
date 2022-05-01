@@ -1,7 +1,12 @@
 <?php
-
 /**
  * mymenu for D3 modules always require altsys
+ * @package    Pico
+ * @version    XCL 2.3.1
+ * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  (c) 2005-2022 Author
+ * @license    GPL V2
  */
 
 // Deny direct access
@@ -23,14 +28,18 @@ if ( ! file_exists( $langmanpath ) ) {
 }
 
 require_once( $langmanpath );
+
 $langman = D3LanguageManager::getInstance();
+
 $langman->read( 'modinfo.php', $mydirname, $mytrustdirname );
 
 include dirname( __DIR__ ) . '/admin_menu.php';
 
 // Block Admin
 if ( file_exists( XOOPS_TRUST_PATH . '/libs/altsys/myblocksadmin.php' ) ) {
-	$title       = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin';
+
+	$title = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin';
+
 	$adminmenu[] = [ 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ];
 }
 
@@ -45,7 +54,8 @@ if ( count( $config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModul
 
 $adminmenu = array_merge( $adminmenu, $adminmenu4altsys );
 
-$mymenu_uri  = empty( $mymenu_fake_uri ) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri;
+$mymenu_uri = empty( $mymenu_fake_uri ) ? $_SERVER['REQUEST_URI'] : $mymenu_fake_uri;
+
 $mymenu_link = substr( strstr( $mymenu_uri, '/admin/' ), 1 );
 
 
