@@ -130,7 +130,7 @@
                 </a>
 
                 <{if $category.can_edit}>
-                    <a class="px-1 mr-4" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mc<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
+                    <a class="px-1 mr-4" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mc<{$category.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
                         <img class="svg file-edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="file-edit"> </a>
                 <{/if}>
             </div>

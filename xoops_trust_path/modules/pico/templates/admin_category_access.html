@@ -1,7 +1,7 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <!-- category title -->
-<h2><{$mod_name|ucfirst}> <{$smarty.const._MD_PICO_CATEGORY}> : <{$cat_title}></h2>
+<h2><{$mod_name|ucfirst}> » <{$smarty.const._MD_PICO_CATEGORY}> » <{$cat_title}></h2>
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
@@ -23,7 +23,7 @@
 
         <a href="<{$mod_url}>/<{$cat_link}>" class="button"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>
 
-        <button class="help-admin button" type='button' data-id='4' data-module='legacy' data-help-article='#help-permission' title="<{$smarty.const._HELP}>">
+        <button class="help-admin button" type='button' data-id='4' data-module='legacy' data-help-article='#help-permission' aria-label="<{$smarty.const._HELP}>">
             <b>?</b>
         </button>
 

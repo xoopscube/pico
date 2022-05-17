@@ -58,22 +58,22 @@
         <section layout="row center-left" class="action-control">
 
             <{if $content.can_edit}>
-                <a self="mr-2 center-left" class="button" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>" title="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
+                <a self="mr-2 center-left" class="button" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
                     <img class="svg file-edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="file-edit"> <span self="sm-hide"><{$smarty.const._MD_PICO_LINK_EDITCONTENT}></span></a>
             <{/if}>
 
             <{if $xoops_isadmin}>
-                <a self="mx-2 center-left" class="button" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
+                <a self="mx-2 center-left" class="button" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
                     <img class="svg file-move" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="file manage"> <span self="sm-hide"><{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></span></a>
             <{/if}>
 
             <{if $mod_config.show_printicon}>
-            <a self="mx-2" class="button" href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print" title="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>">
+            <a self="mx-2" class="button" href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print" aria-label="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>">
                 <img class="svg print" src="<{$xoops_url}>/images/icons/print.svg" width="1em" height="1em" alt="print"> <span self="sm-hide"><{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}></span></a>
             <{/if}>
 
             <{if $mod_config.show_tellafriend && $content.tellafriend_uri}>
-                <a self="ml-2" class="button" href="<{$content.tellafriend_uri}>" target="_top" title="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>">
+                <a self="ml-2" class="button" href="<{$content.tellafriend_uri}>" target="_top" aria-label="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>">
                     <img class="svg mail-send" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" height="1em" alt="send mail"> <{$smarty.const._MD_PICO_LINK_TELLAFRIEND}></a>
             <{/if}>
 
@@ -193,19 +193,19 @@
         <div self="left" class="<{$smarty.const._ALIGN_START}>">
         <{if $prev_content.id}>
 
-            <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="F" title="<{$smarty.const._MD_PICO_PREV}>">
+            <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="F" aria-label="<{$smarty.const._MD_PICO_PREV}>">
                 <img class="svg arrow-left" src="<{$xoops_url}>/images/icons/arrow-left.svg" width="1em" height="1em" alt="previous"> <{$prev_content.subject}></a>
         <{/if}>
         </div>
 
         <div self="center">
-            <a href="<{$mod_url}>/<{$category.link}>" accesskey="P" title="<{$smarty.const._MD_PICO_CATEGORYINDEX}>">
+            <a href="<{$mod_url}>/<{$category.link}>" accesskey="P" aria-label="<{$smarty.const._MD_PICO_CATEGORYINDEX}>">
                 <img class="svg arrow-up" src="<{$xoops_url}>/images/icons/arrow-up.svg" width="1em" height="1em" alt="up"> <{$category.title}></a>
         </div>
 
         <div self="right" class="<{$smarty.const._ALIGN_END}>">
         <{if $next_content.id}>
-            <a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F" title="<{$smarty.const._MD_PICO_NEXT}>">
+            <a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F" aria-label="<{$smarty.const._MD_PICO_NEXT}>">
                 <{$next_content.subject}> <img class="svg arrow-right" src="<{$xoops_url}>/images/icons/arrow-right.svg" width="1em" height="1em" alt="next"></a>
         <{/if}>
         </div>

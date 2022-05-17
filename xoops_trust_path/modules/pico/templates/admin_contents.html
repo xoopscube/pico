@@ -1,6 +1,6 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<h2><{$mod_name|ucfirst}> <{$smarty.const._MD_PICO_CATEGORY}>: <{$cat_title}></h2>
+<h2><{$mod_name|ucfirst}> » <{$smarty.const._MD_PICO_CATEGORY}> » <{$cat_title}></h2>
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
@@ -24,7 +24,7 @@
         <a href="<{$mod_url}>/<{$cat_link}>" class="button"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>
         <{/if}>
 
-        <button class="help-admin button" type='button' data-id='4' data-module='legacy' data-help-article='#help-version' title="<{$smarty.const._HELP}>">
+        <button class="help-admin button" type='button' data-id='4' data-module='legacy' data-help-article='#help-version' aria-label="<{$smarty.const._HELP}>">
             <b>?</b>
         </button>
     </div>
@@ -97,12 +97,12 @@
         </thead>
         <tbody>
         <{foreach from=$contents item="content"}>
-        <tr class="<{cycle values=" even,odd"}>">
+        <tr>
         <td style="text-align:<{$smarty.const._ALIGN_END}>;">
             <{$content.id}>
             <{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}>
             <br>
-            <span title="<{"--"|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>">(<{$content.cat_id}>)</span>
+            <span aria-label="<{"--"|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>">(<{$content.cat_id}>)</span>
             <{/if}>
         </td>
         <td align="<{$smarty.const._ALIGN_START}>">

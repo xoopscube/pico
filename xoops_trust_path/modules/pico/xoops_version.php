@@ -28,7 +28,7 @@ $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname;
 $modversion['version']          = '2.41';
-$modversion['detailed_version'] = '2.41.2';
+$modversion['detailed_version'] = '2.41.3';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp. - peak.ne.jp';
 $modversion['credits']          = 'PEAK Corp. Update by XOOPS-X (10) and refactoring by @gigamaster (XCL PHP7)';
@@ -37,7 +37,7 @@ $modversion['image']            = '/images/module_pico.svg';
 $modversion['icon']             = 'images/module_icon.svg';
 $modversion['help']             = 'help.html';
 $modversion['official']         = 0;
-$modversion['cube_style']       = false;
+$modversion['cube_style']       = true;
 $modversion['read_any']         = true;
 
 // SQL
