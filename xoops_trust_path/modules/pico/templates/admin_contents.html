@@ -2,6 +2,9 @@
 
 <h2><{$mod_name|ucfirst}> » <{$smarty.const._MD_PICO_CATEGORY}> » <{$cat_title}></h2>
 
+<div class="tips">
+    <{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}>
+</div>
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section layout="row center-justify" class="action-control">
@@ -46,7 +49,7 @@
                value="0"></div>
 
     <div align="<{$smarty.const._ALIGN_END}>" class="pico-legend" style="display: none">
-        <{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}>
+
     </div>
 
     <table class="outer">
@@ -102,15 +105,21 @@
             <{$content.id}>
             <{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}>
             <br>
-            <span aria-label="<{"--"|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>">(<{$content.cat_id}>)</span>
+            <span class="badge" aria-label="<{"--"|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>"><{$content.cat_id}></span>
             <{/if}>
         </td>
         <td align="<{$smarty.const._ALIGN_START}>">
-            <input type="text" size="24" name="subjects[<{$content.id}>]" id="col_subject_<{$content.id}>"
+            <input type="text"
+                   size="24"
+                   name="subjects[<{$content.id}>]"
+                   id="col_subject_<{$content.id}>"
                    value="<{$content.subject}>">
         </td>
         <td align="center">
-            <input type="text" size="24" name="vpaths[<{$content.id}>]" id="col_vpath_<{$content.id}>"
+            <input type="text"
+                   size="24"
+                   name="vpaths[<{$content.id}>]"
+                   id="col_vpath_<{$content.id}>"
                    value="<{$content.vpath}>">
             <{if strstr($content.filters,"wraps")}>*<{/if}>
             <{if $content.wrap_file}>
@@ -120,26 +129,38 @@
             <{/if}>
         </td>
         <td align="center">
-            <input type="text" size="3" name="weights[<{$content.id}>]" id="col_weight_<{$content.id}>"
-                   value="<{$content.weight}>" style="text-align:<{$smarty.const._ALIGN_END}>;">
+            <input type="number"
+                   size="3"
+                   name="weights[<{$content.id}>]"
+                   id="col_weight_<{$content.id}>"
+                   value="<{$content.weight}>"
+                   style="max-width: 8ch;">
         </td>
         <td align="center">
-            <input type="checkbox" name="visibles[<{$content.id}>]" id="col_visible_<{$content.id}>" value="1" <{if
-            $content.visible}>checked="checked"<{/if}>>
+            <input type="checkbox"
+                   name="visibles[<{$content.id}>]"
+                   id="col_visible_<{$content.id}>"
+                   value="1" <{if $content.visible}>checked="checked"<{/if}>>
         </td>
         <td align="center">
-            <input type="checkbox" name="show_in_navis[<{$content.id}>]" id="col_show_in_navi_<{$content.id}>" value="1"
-            <{if $content.show_in_navi}>checked="checked"<{/if}>>
+            <input type="checkbox"
+                   name="show_in_navis[<{$content.id}>]"
+                   id="col_show_in_navi_<{$content.id}>"
+                   value="1" <{if $content.show_in_navi}>checked="checked"<{/if}>>
         </td>
         <td align="center">
-            <input type="checkbox" name="show_in_menus[<{$content.id}>]" id="col_show_in_menu_<{$content.id}>" value="1"
-            <{if $content.show_in_menu}>checked="checked"<{/if}>>
+            <input type="checkbox"
+                   name="show_in_menus[<{$content.id}>]"
+                   id="col_show_in_menu_<{$content.id}>"
+                   value="1" <{if $content.show_in_menu}>checked="checked"<{/if}>>
         </td>
         <td align="center">
-            <input type="checkbox" name="allow_comments[<{$content.id}>]" id="col_allow_comment_<{$content.id}>"
+            <input type="checkbox"
+                   name="allow_comments[<{$content.id}>]"
+                   id="col_allow_comment_<{$content.id}>"
                    value="1" <{if $content.allow_comment}>checked="checked"<{/if}>>
         </td>
-        <td nowrap="nowrap" style="text-align:<{$smarty.const._ALIGN_END}>;">
+        <td class="list_control" nowrap="nowrap" style="text-align:<{$smarty.const._ALIGN_END}>;">
             <{if $content.is_deleted}>
             <ul class="pico_content_history_list">
                 <{foreach from=$content.histories item="history"}>
@@ -173,12 +194,14 @@
             <{if $content.expiring_time < time()}>
             <strong style="color:#607D8B;"><{$smarty.const._MD_PICO_EXPIRED}></strong>
             <{/if}>
-            <a href="<{$mod_url}>/<{$content.link}>"><{$smarty.const._MD_A_PICO_LABEL_MAINDISP}></a> |
+            <a href="<{$mod_url}>/<{$content.link}>"><{$smarty.const._MD_A_PICO_LABEL_MAINDISP}></a>
             <a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=ac<{$cat_id}>"><{$smarty.const._EDIT}></a>
-            |
-            <input type="checkbox" name="action_selects[<{$content.id}>]" id="col_action_<{$content.id}>" value="1">
+            <input type="checkbox"
+                   name="action_selects[<{$content.id}>]"
+                   id="col_action_<{$content.id}>"
+                   value="1">
             <br>
-            <{$content.modifier_uname}> <{$content.modified_time_formatted}>
+            <span class="badge"><{$content.modifier_uname}> <{$content.modified_time_formatted}></span>
             <{/if}>
         </td>
         </tr>
@@ -193,15 +216,26 @@
         <tr>
             <th colspan="9" style="text-align:<{$smarty.const._ALIGN_END}>;">
                 <{$smarty.const._MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED}>
-                <input type="submit" name="contents_delete" value="<{$smarty.const._MD_A_PICO_BTN_DELETE}>"
+                <input type="submit"
+                       name="contents_delete"
+                       value="<{$smarty.const._MD_A_PICO_BTN_DELETE}>"
                        onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DELETE}>');">
-                <input type="submit" name="contents_move" value="<{$smarty.const._MD_A_PICO_BTN_MOVE}>">
-                <select name="dest_cat_id" id="select_dest_cat_id"><{html_options options=$cat_options4move
-                    selected=$cat_id}></select>
+                <input type="submit"
+                       name="contents_move"
+                       value="<{$smarty.const._MD_A_PICO_BTN_MOVE}>">
+                <select name="dest_cat_id"
+                        id="select_dest_cat_id">
+                        <{html_options options=$cat_options4move selected=$cat_id}>
+                </select>
                 <br>
-                <input type="submit" name="contents_export" value="<{$smarty.const._MD_A_PICO_BTN_EXPORT}>"
+                <input type="submit"
+                       name="contents_export"
+                       value="<{$smarty.const._MD_A_PICO_BTN_EXPORT}>"
                        onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_EXPORT}>');">
-                <select name="export_mid" id="select_export_mid"><{html_options options=$module_options}></select>
+                <select name="export_mid"
+                        id="select_export_mid">
+                        <{html_options options=$module_options}>
+                </select>
             </th>
         </tr>
         </tfoot>
