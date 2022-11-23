@@ -26,19 +26,19 @@ define( '_MD_PICO_FMT_PRIVATECOUNT' , 'Private: %s items');
 define( '_MD_PICO_INVISIBLE' , 'Invisible');
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-04-23 04:51:13
-define( '_MD_PICO_TH_TAGS' , 'Tags');
-define( '_MD_PICO_TH_TAGSDSC' , 'separate tags by a space');
-define( '_MD_PICO_FMT_QUERYTAGTITLE' , 'Tag: %s');
-define( '_MD_PICO_FMT_QUERYTAGDESC' , 'Contents tagged %s');
-define( '_MD_PICO_ERR_NOCONTENTMATCHED' , 'No contents');
+define( '_MD_PICO_TH_TAGS' , 'Etiquetas');
+define( '_MD_PICO_TH_TAGSDSC' , 'separar as etiquetas por um espaço');
+define( '_MD_PICO_FMT_QUERYTAGTITLE' , 'Etiqueta: %s');
+define( '_MD_PICO_FMT_QUERYTAGDESC' , 'Tópicos etiquetados %s');
+define( '_MD_PICO_ERR_NOCONTENTMATCHED' , 'A informação solicitada não está disponível.');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-22 03:55:48
 define( '_MD_PICO_CSVENCODING' , 'UTF-8');
-define( '_MD_PICO_ERR_LOCKEDCONTENT' , 'The content is locked');
-define( '_MD_PICO_LABEL_LOCKED' , 'Lock (only moderators can edit/delete it)');
+define( '_MD_PICO_ERR_LOCKEDCONTENT' , 'O conteúdo está bloqueado');
+define( '_MD_PICO_LABEL_LOCKED' , 'Bloquear (só os moderadores podem editar/apagar)');
 
 define( '_MD_PICO_TOP' , "Principal");
-define( '_MD_PICO_ALLCONTENTS' , "Todos os artigos");
+define( '_MD_PICO_ALLCONTENTS' , "Todos o conteúdo");
 define( '_MD_PICO_DELETEDCONTENTS' , "Conteúdo removido");
 define( '_MD_PICO_MENU' , "Menu");
 define( '_MD_PICO_CREATED' , "Criado");
@@ -146,7 +146,7 @@ define( '_MD_PICO_BTN_SUBMITEDITING' , "Publicar este formulário");
 define( '_MD_PICO_BTN_SUBMITSAVEAS' , "Salvar como");
 define( '_MD_PICO_BTN_COPYFROMWAITING' , "Publicar artigo pendente");
 define( '_MD_PICO_MSG_CONFIRMCOPYFROMWAITING' , "Todo o artigo editado nesta página será perdito. Confirma?");
-define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , "Para substituir uma preferência, escreva uma linha como: <br> nome da opção): (valor da opção)<br>Por exemplo: <br>show_breadcrumbs:1<br> - fará com que o valor da opção breadcrumbs seja 1.");
+define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , "<p>Para substituir uma preferência, inserir uma nova linha:<br><code><b>(nome da opção)</b>:<u>(valor da opção)</u></code><br>Por exemplo, para exibir o caminho de navegação:<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><h5>Valores atuais das opções substituíveis</h5>");
 
 
 // vote to post

@@ -1,5 +1,5 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
@@ -35,8 +35,8 @@
 <hr>
 
     <{* /////// NOTIFICATION \\\\\\\ *}>
-
+    <{if $xoops_isadmin}>
     <{include file='db:system_notification_select.html'}>
-
+	<{/if}>
 </div>
 <!-- end module contents -->

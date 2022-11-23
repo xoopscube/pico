@@ -18,7 +18,7 @@ define( '_MD_PICO_TH_TAGS' , 'Étiquettes - Mots clés');
 define( '_MD_PICO_TH_TAGSDSC' , 'séparer chaque étiquette par un espace');
 define( '_MD_PICO_FMT_QUERYTAGTITLE' , 'Étiqueter: %s');
 define( '_MD_PICO_FMT_QUERYTAGDESC' , 'Contenu étiqueté %s');
-define( '_MD_PICO_ERR_NOCONTENTMATCHED' , 'Aucun contenu');
+define( '_MD_PICO_ERR_NOCONTENTMATCHED' , "Le contenu ou la ressource demandée n'est pas disponible.");
 
 define( '_MD_PICO_CSVENCODING' , 'UTF-8');
 
@@ -29,7 +29,7 @@ define( '_MD_PICO_EXPIRED' , 'Expiré');
 define( '_MD_PICO_LABEL_SPECIFY_DATETIME' , 'Spécifier la date');
 define( '_MD_PICO_BTN_SUBMITSAVEAS' , 'Enregistrer sous');
 define( '_MD_PICO_ONOFF' , 'Activer/Désactiver');
-define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , 'Pour changer les préférences, écrivez une ligne comme ceci:<br>(nom de l\'option):(valeur de l\'option)<br>ex.)<br>show_breadcrumbs:1 <br><br>Options et valeurs que vous pouvez changer:');
+define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , '<p>Pour changer les préférences, ajoutez une nouvelle ligne comme ceci:<br><code><b>(nom de l\'option)</b>:<u>(valeur de l\'option)</u></code></br>Par exemple, pour indiquer le chemin de navigation:<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p>><h5>Options et valeurs que vous pouvez changer</h5>>');
 define( '_MD_PICO_JUMPTOTOPOFPICOBODY' , 'Haut de la page');
 define( '_MD_PICO_CONTENTS_TOTAL' , 'Publications');
 define( '_MD_PICO_SUBCATEGORIES_TOTAL' , 'Sous-catégories');

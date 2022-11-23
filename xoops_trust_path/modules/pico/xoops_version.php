@@ -28,7 +28,7 @@ $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname;
 $modversion['version']          = '2.41';
-$modversion['detailed_version'] = '2.41.3';
+$modversion['detailed_version'] = '2.41.4';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp. - peak.ne.jp';
 $modversion['credits']          = 'PEAK Corp. Update by XOOPS-X (10) and refactoring by @gigamaster (XCL PHP7)';
@@ -280,6 +280,16 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
+    'name'        => 'show_rss',
+    'title'       => $constpref . '_SHOW_RSS',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
+];
+
+$modversion['config'][] = [
 	'name'        => 'show_pagenavi',
 	'title'       => $constpref . '_SHOW_PAGENAVI',
 	'description' => '',
@@ -295,7 +305,7 @@ $modversion['config'][] = [
 	'description' => '',
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',
-	'default'     => 1,
+	'default'     => 0,
 	'options'     => []
 ];
 
@@ -426,7 +436,7 @@ $modversion['config'][] = [
 	'description' => '',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'int',
-	'default'     => 10,
+	'default'     => 4,
 	'options'     => []
 ];
 
@@ -546,7 +556,7 @@ $modversion['config'][] = [
 	'description' => '',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'int',
-	'default'     => '10',
+	'default'     => '5',
 	'options'     => []
 ];
 

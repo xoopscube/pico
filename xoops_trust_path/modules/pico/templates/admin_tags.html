@@ -4,7 +4,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section layout="row center-justify" class="action-control">
+<section data-layout="row center-justify" class="action-control">
 
     <form method="get" action="<{$mod_url}>/admin/index.php" class="pico_pagenav">
         <input type="hidden" name="page" value="tags">
@@ -27,7 +27,7 @@
 
     <div class="control-view">
 
-        <button class="help-admin button" type='button' data-id='4' data-module='legacy' data-help-article='#help-version' aria-label="<{$smarty.const._HELP}>">
+        <button class="help-admin button" type='button' data-id='4' data-module='<{$mod_name}>' data-help-article='#help-overview' aria-label="<{$smarty.const._HELP}>">
             <b>?</b>
         </button>
 
