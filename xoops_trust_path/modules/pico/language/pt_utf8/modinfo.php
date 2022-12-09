@@ -1,26 +1,13 @@
 <?php
-// Translation Info
-// *************************************************************** //
-// ############################################################### //
-// ## XOOPS Cube Legacy 2.1 - Tradução para o Português
-// ############################################################### //
+// ## XOOPS Cube Legacy - Tradução para o Português
 // ## Por............: Mikhail Miguel
 // ## E-mail.........: mikhail@underpop.com
 // ## Website........: http://xoopscube.com.br
-// ############################################################### //
-// *************************************************************** //
+
 if( defined("FOR_XOOPS_LANG_CHECKER") ) $mydirname = "pico";
 $constpref = "_MI_" . strtoupper( $mydirname ) ;
 
 if(defined("FOR_XOOPS_LANG_CHECKER") || ! defined($constpref."_LOADED") ) {
-
-
-
-
-
-
-
-
 
 // Appended by Xoops Language Checker -GIJOE- in 2009-01-18 18:29:25
 define($constpref.'_COM_ORDER','Order of comment-integration');
@@ -97,6 +84,7 @@ define($constpref."_MENUINMODULETOP","Mostrar o menu (índice) no topo deste mó
 define($constpref."_LISTASINDEX","Mostrar o índice de artigos na página inicial");
 define($constpref."_LISTASINDEXDSC","Optar por SIM fará com que a página inicial deste módulo seja um índice dos artigos; optar por NÃO fará com que o artigo de maior prioridade seja a página inicial.");
 define($constpref."_SHOW_BREADCRUMBS","Mostrar breadcrumbs");
+define($constpref."_SHOW_RSS","Mostrar RSS");
 define($constpref."_SHOW_PAGENAVI","Mostrar a página de navegação do artigo");
 define($constpref."_SHOW_PRINTICON","Mostrar o ícone de página para impressão");
 define($constpref."_SHOW_TELLAFRIEND","Mostrar o ícone de indicação de artigo por email");
@@ -150,6 +138,3 @@ define($constpref."_NOTIFY_GLOBAL_NEWCONTENTCAP","Notifique-me quando um artigo 
 define($constpref."_NOTIFY_GLOBAL_NEWCONTENTSBJ","[{X_SITENAME}] {X_MODULE} : Novo artigo");
 
 }
-
-
-?>
