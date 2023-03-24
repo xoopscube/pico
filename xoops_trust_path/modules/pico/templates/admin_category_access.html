@@ -5,7 +5,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
+<section data-layout="row center-justify sm-column" class="action-control">
 
     <!-- category selection -->
     <form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get">
@@ -15,18 +15,22 @@
         <input type="submit" value="<{$smarty.const._SUBMIT}>">
     </form>
 
-    <div class="control-view">
-
-        <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>" class="button"><{$smarty.const._EDIT}></a>
-
-        <a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>" class="button"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>
-
-        <a href="<{$mod_url}>/<{$cat_link}>" class="button"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>
-
-        <button class="help-admin button" type='button' data-id='4' data-module='legacy' data-help-article='#help-permission' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b>
-        </button>
-
+    <div class="control-view" data-self="right sm-full">
+        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <div class="dropdown" id="action-contents">
+            <a href="#" class="dropdown-toggle action-menu button" aria-label="action">
+                <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
+            </a>
+            <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
+                <div data-layout="row justify-center">
+                    <h6 data-self="center size-x1"><{$mydirname|ucfirst}> <{$smarty.const._ACTION}></h6>
+                    <button class="help-admin button" type="button" data-module="pico" data-help-article="#help-content" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+                </div>
+                <a class="button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><i class="i-edit"></i><{$smarty.const._EDIT}></a>
+                <a class="button" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>"><i class="i-add"></i><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>
+                <a class="button" href="<{$mod_url}>/<{$cat_link}>"><i class="i-view"></i><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>
+            </div>
+        </div>
     </div>
 
 </section>
@@ -34,7 +38,7 @@
 <{if $cat_id != 0 }>
 <div class="ui-card-full">
     <!-- cat_permission_id == cat_id -->
-    <h3 class="head"><{$smarty.const._MD_A_PICO_H2_INDEPENDENTPERMISSION}></h3>
+    <h3><{$smarty.const._MD_A_PICO_H2_INDEPENDENTPERMISSION}></h3>
     <form name="independentpermission" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post">
         <{$gticket_hidden}>
         <label for="independentpermission"><{$smarty.const._MD_A_PICO_LABEL_INDEPENDENTPERMISSION}></label>
@@ -56,7 +60,7 @@
 
 
 <!-- group form -->
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_GROUPPERMS}></h2>
+<h2><{$smarty.const._MD_A_PICO_H2_GROUPPERMS}></h2>
 
 <form name="groupperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post">
     <{$gticket_hidden}>
@@ -78,17 +82,16 @@
         <tbody>
         <{foreach from=$groups item=group}>
         <tr align="center">
-            <td class="head"><{$group.name}></td>
-            <td class="head">
+            <td><{$group.name}></td>
+            <td>
                 <input type="checkbox"
                        onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_gid<{$group.gid}>_')>=0){elements[i].checked=this.checked;}}}">
             </td>
             <{foreach from=$permissions item=perm_title key=perm_name name=group_td}>
-            <td class="<{cycle values=" odd,even
-            "}>">
+            <td>
             <input type="checkbox" name="<{$perm_name}>[<{$group.gid}>]"
-                   id="gcol_<{$smarty.foreach.group_td.iteration}>_gid<{$group.gid}>_" value="1" <{if
-            $group.perms.$perm_name}>checked="checked"<{/if}>>
+                   id="gcol_<{$smarty.foreach.group_td.iteration}>_gid<{$group.gid}>_"
+                   value="1" <{if $group.perms.$perm_name}>checked="checked"<{/if}>>
             </td>
             <{/foreach}>
         </tr>
@@ -105,7 +108,7 @@
 
 
 <!-- user form -->
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h2>
+<h2><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h2>
 
 <div class="tips">
     <{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
@@ -131,9 +134,9 @@
         <!-- edit user -->
         <{foreach from=$users item=user}>
         <tr>
-            <td class="head"><{$user.uid}></td>
-            <td class="head"><{$user.name}></td>
-            <td class="head">
+            <td><{$user.uid}></td>
+            <td><{$user.name}></td>
+            <td>
                 <input type="checkbox"
                        onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_uid<{$user.uid}>_')>=0){elements[i].checked=this.checked;}}}">
             </td>
@@ -150,19 +153,18 @@
         <!-- new user -->
         <{foreach from=$new_users item=user}>
         <tr align="center">
-            <td class="head">
+            <td>
                 <input type="text" size="4" name="new_uids[<{$user.nid}>]" value="">
             </td>
-            <td class="head">
+            <td>
                 <input type="text" size="12" name="new_unames[<{$user.nid}>]" value="">
             </td>
-            <td class="head">
+            <td>
                 <input type="checkbox"
                        onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_nid<{$user.nid}>_')>=0){elements[i].checked=this.checked;}}}">
             </td>
             <{foreach from=$permissions item=perm_title key=perm_name name=user_td}>
-            <td class="<{* cycle values=" odd,even
-            " *}>">
+            <td>
             <input type="checkbox" name="new_<{$perm_name}>[<{$user.nid}>]"
                    id="ucol_<{$smarty.foreach.user_td.iteration}>_nid<{$user.nid}>_" value="1" <{if
             $user.perms.$perm_name}>checked="checked"<{/if}>>

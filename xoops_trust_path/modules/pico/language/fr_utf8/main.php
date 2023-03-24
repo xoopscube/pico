@@ -22,7 +22,7 @@ define( '_MD_PICO_ERR_NOCONTENTMATCHED' , "Le contenu ou la ressource demandée 
 
 define( '_MD_PICO_CSVENCODING' , 'UTF-8');
 
-define( '_MD_PICO_ERR_LOCKEDCONTENT' , 'Le contenu est verrouillé');
+define( '_MD_PICO_ERR_LOCKEDCONTENT' , 'Contenu verrouillé');
 define( '_MD_PICO_LABEL_LOCKED' , 'Vérrouillé (seulement les modérateurs peuvent éditer/supprimer)');
 define( '_MD_PICO_WAITINGRELEASE' , 'en attente de publication');
 define( '_MD_PICO_EXPIRED' , 'Expiré');
@@ -42,7 +42,7 @@ define( '_MD_PICO_HISTORY' , 'Historique');
 define( '_MD_PICO_REFERIT' , 'En référer');
 define( '_MD_PICO_TOP' , 'Index');
 define( '_MD_PICO_ALLCONTENTS' , 'Tout le contenu');
-define( '_MD_PICO_MENU' , 'MENU');
+define( '_MD_PICO_MENU' , 'Menu');
 define( '_MD_PICO_CREATED' , 'Créé');
 define( '_MD_PICO_MODIFIED' , 'Modifié');
 define( '_MD_PICO_VIEWED' , 'Lectures');

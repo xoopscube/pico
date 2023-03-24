@@ -79,8 +79,10 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_URIM_CLASSDSC', 'Developers can override the URI mapper. The default value is PicoUriMapper' );
     define( $constpref . '_EFIMAGES_DIR', 'Directory for extra_fields' );
     define( $constpref . '_EFIMAGES_DIRDSC', 'Relative path to the public directory e.g. public_html/.<br>First, create and chmod 777 the directory. Default value: uploads/dirname' );
-    define( $constpref . '_EFIMAGES_SIZE', 'Pixels for extra images' );
-    define( $constpref . '_EFIMAGES_SIZEDSC', 'main_width x main_height small_width x small_height. Default value: 480x480 150x150' );
+    define( $constpref . '_EFIMAGES_SIZE', 'Extra images generated from the upload file' );
+    define( $constpref . '_EFIMAGES_SIZEDSC', 'Used in article header and theme Open Graph. Default values in pixels, width x height : 1200x627 820x312 640x360' );
+    define( $constpref . '_EFIMAGES_QUALITY', 'Extra Image quality compression' );
+    define( $constpref . '_EFIMAGES_QUALITYDSC', 'minimize' );
     define( $constpref . '_IMAGICK_PATH', 'Path for ImageMagick binaries' );
     define( $constpref . '_IMAGICK_PATHDSC', 'Leave blank, or set it like /usr/X11R6/bin/' );
     define( $constpref . '_COM_DIRNAME', 'Comment-integration: dirname of d3forum' );
@@ -109,13 +111,13 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_NOTIFY_GLOBAL_WAITINGCONTENT', '' );
     define( $constpref . '_NOTIFY_GLOBAL_WAITINGCONTENTCAP', 'Notify when new posts or modifications wait approval (Just notify admins or moderators)' );
     define( $constpref . '_NOTIFY_GLOBAL_WAITINGCONTENTSBJ', '[{X_SITENAME}] {X_MODULE}: waiting' );
-    define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENT', 'new content' );
+    define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENT', 'New content' );
     define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENTCAP', 'Notify when new content is created. (approved content only)' );
     define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENTSBJ', '[{X_SITENAME}] {X_MODULE} : a new content {CONTENT_SUBJECT}' );
-    define( $constpref . '_NOTIFY_CATEGORY_NEWCONTENT', 'new content' );
+    define( $constpref . '_NOTIFY_CATEGORY_NEWCONTENT', 'New content' );
     define( $constpref . '_NOTIFY_CATEGORY_NEWCONTENTCAP', 'Notify when a new content is created. (approved content only)' );
     define( $constpref . '_NOTIFY_CATEGORY_NEWCONTENTSBJ', '[{X_SITENAME}] {X_MODULE}:{CAT_TITLE} a new content {CONTENT_SUBJECT}' );
-    define( $constpref . '_NOTIFY_CONTENT_COMMENT', 'new comment' );
+    define( $constpref . '_NOTIFY_CONTENT_COMMENT', 'New comment' );
     define( $constpref . '_NOTIFY_CONTENT_COMMENTCAP', 'Notify when new comment is posted. (approved content only)' );
     define( $constpref . '_NOTIFY_CONTENT_COMMENTSBJ', '[{X_SITENAME}] {X_MODULE} : a new comment' );
 }

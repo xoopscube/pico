@@ -2,11 +2,11 @@
 /**
  * Pico content management D3 module for XCL
  * @package    Pico
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL v2.0
  */
 
 // language file (modinfo.php)
@@ -27,8 +27,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname;
-$modversion['version']          = '2.42';
-$modversion['detailed_version'] = '2.42.1';
+$modversion['version']          = '2.43';
+$modversion['detailed_version'] = '2.43.3';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp. - peak.ne.jp';
 $modversion['credits']          = 'PEAK Corp. Update by XOOPS-X (10) and refactoring by @gigamaster (XCL PHP7)';
@@ -488,17 +488,24 @@ $modversion['config'][] = [
 	'default'     => 'uploads/' . $mydirname,
 	'options'     => []
 ];
-
 $modversion['config'][] = [
 	'name'        => 'extra_images_size',
 	'title'       => $constpref . '_EFIMAGES_SIZE',
 	'description' => $constpref . '_EFIMAGES_SIZEDSC',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'text',
-	'default'     => '480x480 160x160',
+	'default'     => '1200x627 820x312 640x360',
 	'options'     => []
 ];
-
+$modversion['config'][] = [
+    'name'        => $constpref . '_EFIMAGES_QUALITY',
+    'title'       => $constpref . '_EFIMAGES_QUALITYDSC',
+    'description' => 'set the quality for generated images',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 50,
+    'options'     => []
+];
 $modversion['config'][] = [
 	'name'        => 'image_magick_path',
 	'title'       => $constpref . '_IMAGICK_PATH',
