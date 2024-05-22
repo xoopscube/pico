@@ -35,15 +35,18 @@ License | GPL
 
 -----
 
+#### Usage
+
+Pico is a duplicatable module, which means the public folder can be cloned and renamed to create a new instance with its own parameters, blocks and templates fully customizable (aka directory-free V3), otherwise known as D3 modules, e.g. D3Forum. 
+
+Pico features frontend content creation and editing with CKEditor4 connected to X-elFinder the file manager for the web with cloud storage possibilities.
+Each content can have its own header (css and javascript) and embed content, or forms, from other instances of the module.
+
+### Activity Overview
+
+<img src="https://repository-images.githubusercontent.com/466252342/a3708b13-2832-463c-8981-dcf0dfbdc88c" width="100%" height="auto" alt="Pico's actibity overview">
+
 ### Features
-
-**Pico** is a module for content management based on Duplicatable and directory-free V3 (D3).
-
-Though Pico functionally looks like a successor to TinyD, the Pico module is completely coded from scratch.
-
-TinyD has become a deprecated module since the Pico module has reached a stable release.
-Of course, you can update your content from TinyD to Pico very easily from the administration dashboard.
-
 
 - category hierarchy
 - breadcrumbs
