@@ -8,8 +8,6 @@
 
 ## ///// — Pico :: Content Management Module
 
-![alt text](https://repository-images.githubusercontent.com/347963527/8c04d798-5562-4443-8e55-656298649231)
-
 
 MODULE | Pico
 ------------ | -------------
