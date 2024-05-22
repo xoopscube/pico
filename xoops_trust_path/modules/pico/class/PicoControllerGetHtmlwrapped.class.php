@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  */
 
@@ -16,18 +16,6 @@ require_once __DIR__ . '/PicoModelContent.class.php';
 
 // HTML wrapping without DB
 class PicoControllerGetHtmlwrapped extends PicoControllerAbstract {
-
-	//var $mydirname = '' ;
-	//var $mydirname = '' ;
-	//var $mytrustdirname = '' ;
-	//var $assign = array() ;
-	//var $mod_config = array() ;
-	//var $uid = 0 ;
-	//var $currentCategoryObj = null ;
-	//var $permissions = array() ;
-	//var $is_need_header_footer = true ;
-	//var $template_name = '' ;
-	//var $html_header = '' ;
 
 	public function execute( $request ) {
 		parent::execute( $request );
@@ -45,9 +33,9 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract {
 		// permission check
 		if ( empty( $this->assign['content']['can_read'] ) || empty( $this->assign['content']['can_readfull'] ) ) {
 			if ( $this->uid > 0 ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_PERMREADFULL );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_PERMREADFULL );
 			} else {
-				redirect_header( XOOPS_URL . '/user.php', 2, _MD_PICO_ERR_LOGINTOREADFULL );
+				redirect_header( XOOPS_URL . '/user.php', 1, _MD_PICO_ERR_LOGINTOREADFULL );
 			}
 			exit;
 		}

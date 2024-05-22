@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -92,7 +92,7 @@ if ( ! function_exists( 'pico_onupdate_base' ) ) {
 			$db->queryF( 'ALTER TABLE ' . $db->prefix( $mydirname . '_contents' ) . ' ADD `locked` tinyint(1) NOT NULL default 0 AFTER subject_waiting, ADD `redundants` text AFTER filters' );
 		}
 		$check_sql = 'SHOW CREATE TABLE ' . $db->prefix( $mydirname . '_content_histories' );
-		list( , $create_sql ) = $db->fetchRow( ( $db->queryF( $check_sql ) ) );
+		[, $create_sql] = $db->fetchRow( ( $db->queryF( $check_sql ) ) );
 		if ( stristr( $create_sql, '`body` text' ) ) {
 			$db->queryF( 'ALTER TABLE ' . $db->prefix( $mydirname . '_content_histories' ) . ' MODIFY `htmlheader` mediumtext, MODIFY `body` mediumtext' );
 		}

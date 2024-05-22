@@ -3,12 +3,14 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2024 Authors
+ * @license    GPL v2.0
  */
+
+use JetBrains\PhpStorm\Pure;
 
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/FormProcessByHtml.class.php';
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/PicoFormProcessBySmartyBase.class.php';
@@ -21,7 +23,10 @@ function smarty_function_survey( $params, &$smarty ) {
 }
 
 class PicoFormProcessBySmartySurvey extends PicoFormProcessBySmartyBase {
-	public function __construct() {
+
+    public function __construct() {
+
+        parent::__construct(); // TODO gigamaster
 		$this->mypluginname = 'survey';
 	}
 

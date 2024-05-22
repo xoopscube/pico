@@ -2,16 +2,18 @@
 /**
  * Pico content management D3 module for XCL
  *
- * @package XCL
- * @subpackage Pico
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright  (c) 2005-2023 Authors
- * @license GPL v2.0
+ * @package    Pico
+ * @version    XCL 2.4.0
+ * @author     Other authors Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
+ * @copyright  (c) 2005-2024 Authors
+ * @license    GPL v2.0
  */
 
 function b_pico_subcategories_show( $options ) {
-	global $xoopsUser;
+	$myts = null;
+ $ret = [];
+ global $xoopsUser;
 
 	$mydirname = empty( $options[0] ) ? 'pico' : $options[0];
 

@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -29,7 +29,7 @@ class PicoControllerEditContent extends PicoControllerAbstract {
 
 		// check existence
 		if ( $contentObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 
@@ -44,13 +44,13 @@ class PicoControllerEditContent extends PicoControllerAbstract {
 		// permission check
 		if ( 'makecontent' === $page ) {
 			if ( empty( $cat_data['can_post'] ) ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CREATECONTENT );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CREATECONTENT );
 			}
 		} else if ( empty( $content_data['can_edit'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, $content_data['locked'] ? _MD_PICO_ERR_LOCKEDCONTENT : _MD_PICO_ERR_EDITCONTENT );
+			redirect_header( XOOPS_URL . '/', 1, $content_data['locked'] ? _MD_PICO_ERR_LOCKEDCONTENT : _MD_PICO_ERR_EDITCONTENT );
 		}
 
-		// category list can be read for category jumpbox etc.
+		// category list can be read for category jump-box etc.
 		$categoryHandler                     = new PicoCategoryHandler( $this->mydirname, $this->permissions );
 		$categories                          = $categoryHandler->getAllCategories();
 		$this->assign['categories_can_post'] = [];

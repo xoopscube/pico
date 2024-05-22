@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -23,7 +23,7 @@ if ( $record ) {
 
 	$mid = $record['mid'];
 
-	$count = count( $modversion['blocks'] );
+	$count = is_countable($modversion['blocks']) ? count( $modversion['blocks'] ) : 0;
 
 	$sql = 'SELECT * FROM ' . $db->prefix( 'newblocks' ) . ' WHERE mid=' . $mid . " AND block_type <>'D' AND func_num > $count";
 

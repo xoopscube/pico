@@ -4,6 +4,10 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 
 $adminmenu = [
 	[
+		'title' => constant( $constpref . '_ADMENU_ACTIVITY' ),
+		'link'  => 'admin/index.php',
+	],
+	[
 		'title' => constant( $constpref . '_ADMENU_CONTENTSADMIN' ),
 		'link'  => 'admin/index.php?page=contents',
 	],
@@ -34,4 +38,8 @@ $adminmenu4altsys = [
 		'title' => constant( $constpref . '_ADMENU_MYTPLSADMIN' ),
 		'link'  => 'admin/index.php?mode=admin&lib=altsys&page=mytplsadmin',
 	],
+    [
+        'title' => _HELP,
+        'link'  => '../legacy/admin/index.php?action=Help&dirname='.$mydirname,
+    ],
 ];

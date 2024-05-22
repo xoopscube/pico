@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  * Class for d3forum comment integration
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -17,7 +17,8 @@ require_once XOOPS_TRUST_PATH . '/modules/d3forum/class/D3commentAbstract.class.
 class PicoD3commentContent extends D3commentAbstract {
 
 	public function fetchSummary( $external_link_id ) {
-		( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &( new MyTextSanitizer )->getInstance();
+		$myts = null;
+  ( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &( new MyTextSanitizer )->getInstance();
 
 		$module_handler = &xoops_gethandler( 'module' );
 		$module         = &$module_handler->getByDirname( $this->mydirname );

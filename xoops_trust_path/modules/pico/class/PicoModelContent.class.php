@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -39,7 +39,7 @@ class PicoContentHandler {
 
 		$ret = [];
 		//for php5.3+
-		while ( list( $content_id ) = $db->fetchRow( $ors ) ) {
+		while ( [$content_id] = $db->fetchRow( $ors ) ) {
 			$objTemp = new PicoContent( $this->mydirname, $content_id, $categoryObj );
 			if ( $return_prohibited_also || $objTemp->data['can_read'] ) {
 				$ret[ $content_id ] = $objTemp;
@@ -70,7 +70,7 @@ class PicoContentHandler {
 
 		$ret = [];
 		//for php5.3+
-		while ( list( $content_id ) = $db->fetchRow( $result ) ) {
+		while ( [$content_id] = $db->fetchRow( $result ) ) {
 			$objTemp            = new PicoContent( $this->mydirname, $content_id );
 			$ret[ $content_id ] = $objTemp;
 			//if( $objTemp->data['can_read'] ) $ret[ $content_id ] =& $objTemp ;
@@ -93,7 +93,7 @@ class PicoContentHandler {
 
 		$ret     = [];
 		$waiting = $offset;
-		while ( list( $content_id ) = $db->fetchRow( $ors ) ) {
+		while ( [$content_id] = $db->fetchRow( $ors ) ) {
 			if ( count( $ret ) >= $limit ) {
 				break;
 			}
@@ -114,7 +114,7 @@ class PicoContentHandler {
 
 		$result = $db->query( 'SELECT content_id,vpath FROM ' . $db->prefix( $this->mydirname . '_contents' ) . " WHERE cat_id=$cat_id AND vpath IS NOT NULL AND poster_uid=0" );
 		$ret    = [];
-		while ( list( $content_id, $vpath ) = $db->fetchRow( $result ) ) {
+		while ( [$content_id, $vpath] = $db->fetchRow( $result ) ) {
 			$ret[ $content_id ] = $vpath;
 		}
 
@@ -132,6 +132,8 @@ class PicoContent {
 	public $categoryObj;
 	public $errorno = 0;
 	public $need_filter_body = false;
+	// faster const if no lang catalog
+	public const _MD_PICO_ERR_COMPILEERROR = 'Smarty Compiler Error ';
 
 	public function __construct( $mydirname, $content_id, $categoryObj = null, $allow_makenew = false ) {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -169,17 +171,17 @@ class PicoContent {
 
 		$this->data = [
 			              'id'                      => (int) $content_row['content_id'],
-			              'created_time_formatted'  => formatTimestamp( $content_row['created_time'] ),
-			              'modified_time_formatted' => formatTimestamp( $content_row['modified_time'] ),
-			              'expiring_time_formatted' => formatTimestamp( $content_row['expiring_time'] ),
+			              'created_time_formatted'  => formatTimestamp( $content_row['created_time'], 'm' ),
+			              'modified_time_formatted' => formatTimestamp( $content_row['modified_time'], 'm' ),
+			              'expiring_time_formatted' => formatTimestamp( $content_row['expiring_time'], 'm' ),
 			              'subject_raw'             => $content_row['subject'],
 			              'body_raw'                => $content_row['body'],
 			              'isadminormod'            => $cat_data['isadminormod'],
 			              'public'                  => $is_public,
 			              'can_read'                => $cat_data['isadminormod'] || $cat_data['can_read'] && $is_public,
 			              'can_readfull'            => $cat_data['isadminormod'] || $cat_data['can_readfull'] && $is_public,
-			              'can_edit'                => $cat_data['isadminormod'] || $cat_data['can_edit'] && ! $content_row['locked'] && $is_public,
-			              'can_delete'              => $cat_data['isadminormod'] || $cat_data['can_delete'] && ! $content_row['locked'] && $is_public,
+			              'can_edit'                => $cat_data['isadminormod'] || $cat_data['can_edit'] && !$content_row['locked'] && $is_public,
+			              'can_delete'              => $cat_data['isadminormod'] || $cat_data['can_delete'] && !$content_row['locked'] && $is_public,
 			              'ef'                      => pico_common_unserialize( $content_row['extra_fields'] ),
 		              ] + $content_row;
 	}
@@ -231,9 +233,11 @@ class PicoContent {
 
 	public function filterBody( $content4assign ) {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
-
+		
+		
+	
 		// marking for compiling errors
-		if ( @$content4assign['last_cached_time'] && $content4assign['last_cached_time'] < $content4assign['modified_time'] ) {
+		if ( $content4assign['last_cached_time'] && $content4assign['last_cached_time'] < $content4assign['modified_time'] ) {
 			if ( _MD_PICO_ERR_COMPILEERROR == $content4assign['body_cached'] ) {
 				return $content4assign['body_cached'];
 			} else {
@@ -369,7 +373,7 @@ class PicoContent {
 	public function &getPrevContent() {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-		list( $prev_content_id ) = $db->fetchRow(
+		[$prev_content_id] = $db->fetchRow(
 			$db->query(
 				'SELECT content_id FROM '
 				. $db->prefix( $this->mydirname . '_contents' )
@@ -394,7 +398,7 @@ class PicoContent {
 	public function &getNextContent() {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-		list( $next_content_id ) = $db->fetchRow(
+		[$next_content_id] = $db->fetchRow(
 			$db->query(
 				'SELECT content_id FROM '
 				. $db->prefix( $this->mydirname . '_contents' )

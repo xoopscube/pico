@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -43,7 +43,7 @@ class PicoControllerDiffHistories extends PicoControllerAbstract {
 
 		// check each content_ids
 		if ( $older_profile[1] !== $newer_profile[1] ) {
-			die( 'Differenct content_ids each other' );
+			die( 'Content_ids different from each other' );
 		}
 
 		$this->contentObj = new PicoContent( $this->mydirname, $request['content_id'], $this->currentCategoryObj );
@@ -58,7 +58,7 @@ class PicoControllerDiffHistories extends PicoControllerAbstract {
 
 		// permission check by 'can_edit'
 		if ( empty( $cat_data['can_edit'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_EDITCONTENT );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_EDITCONTENT );
 			exit;
 		}
 
@@ -72,7 +72,8 @@ class PicoControllerDiffHistories extends PicoControllerAbstract {
 		$renderer                 = new Text_Diff_Renderer_inline();
 		$this->assign['diff_str'] = $renderer->render( $diff );
 		error_reporting( $original_error_level );
-
+        // Since XCL 2.3 revision list
+        $this->assign['content_histories'] = pico_get_content_histories4assign( $this->mydirname, $content_data['id'] );
 		// breadcrumbs
 		$breadcrumbsObj->appendPath( '', 'DIFF' );
 		$this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();

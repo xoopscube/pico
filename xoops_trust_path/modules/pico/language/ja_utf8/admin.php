@@ -1,9 +1,9 @@
 <?php
 
 // Altsys admin menu and breadcrumbs
-define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
-define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks Permissions');
-define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferences');
+define( '_MD_A_MYMENU_MYTPLSADMIN' , 'テンプレート管理');
+define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'ブロック管理');
+define( '_MD_A_MYMENU_MYPREFERENCES' , '一般設定');
 
 // contents list admin
 define( '_MD_A_PICO_H2_CONTENTS' , 'コンテンツ一括管理');
@@ -32,7 +32,7 @@ define( '_MD_A_PICO_MSG_FMT_DUPLICATEDVPATH' , '仮想パスの重複などの�
 // category_access
 define( '_MD_A_PICO_LABEL_SELECTCATEGORY' , 'カテゴリーを選択');
 define( '_MD_A_PICO_H2_INDEPENDENTPERMISSION' , '独立パーミッション設定');
-define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'このカテゴリー独自のパーミッションを設定する');
+define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'この要素は現在、その親から権限を継承しています。 ボックスをチェックして送信すると、このカテゴリに固有の権限を設定できます。');
 define( '_MD_A_PICO_LINK_CATPERMISSIONID' , '親権限を確認する');
 define( '_MD_A_PICO_H2_GROUPPERMS' , 'グループ毎の権限');
 define( '_MD_A_PICO_H2_USERPERMS' , 'ユーザー毎の権限');
@@ -79,6 +79,12 @@ define( '_MD_A_PICO_TH_USED' , '利用数');
 define( '_MD_A_PICO_LABEL_ORDER' , '並び順');
 
 // tips
-define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
-define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
-define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');
+define( '_MD_A_PICO_TIPS_CONTENTS' , 'コンテンツのヒント');
+define( '_MD_A_PICO_TIPS_TAGS' , 'タグのヒント');
+define( '_MD_A_PICO_TIPS_EXTRAS' , 'フォームのヒント');
+
+// ACTIVITY
+define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , '活動概要');
+define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , '期限切れおよびスケジュールされたコンテンツ');
+define( '_MD_A_PICO_ACTIVITY_INTERVAL' , '今日の前後数日間の間隔');
+define( '_MD_A_PICO_ACTIVITY_LATEST' , '最新の予定内容');

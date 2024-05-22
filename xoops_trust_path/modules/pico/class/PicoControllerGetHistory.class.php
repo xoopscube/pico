@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -15,18 +15,6 @@ require_once __DIR__ . '/PicoModelCategory.class.php';
 require_once __DIR__ . '/PicoModelContent.class.php';
 
 class PicoControllerGetHistory extends PicoControllerAbstract {
-
-	//var $mydirname = '' ;
-	//var $mytrustdirname = '' ;
-	//var $assign = array() ;
-	//var $mod_config = array() ;
-	//var $uid = 0 ;
-	//var $currentCategoryObj = null ;
-	//var $permissions = array() ;
-	//var $is_need_header_footer = true ;
-	//var $template_name = '' ;
-	//var $html_header = '' ;
-	//var $contentObjs = array() ;
 
 	public $contentObj;
 	public $view;
@@ -49,7 +37,7 @@ class PicoControllerGetHistory extends PicoControllerAbstract {
 
 		// permission check by 'can_edit'
 		if ( empty( $cat_data['can_edit'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_EDITCONTENT );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_EDITCONTENT );
 			exit;
 		}
 
@@ -57,7 +45,8 @@ class PicoControllerGetHistory extends PicoControllerAbstract {
 		$this->assign['content_history_id'] = $request['content_history_id'];
 		[ , , $history_body ] = pico_get_content_history_profile( $this->mydirname, $request['content_history_id'] );
 		$this->assign['history_body_raw'] = $history_body;
-
+        // Since XCL 2.3 revision list
+        $this->assign['content_histories'] = pico_get_content_histories4assign( $this->mydirname, $content_data['id'] );
 		// breadcrumbs
 		$breadcrumbsObj->appendPath( '', _MD_PICO_HISTORY );
 		$this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();

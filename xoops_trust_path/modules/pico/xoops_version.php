@@ -2,10 +2,10 @@
 /**
  * Pico content management D3 module for XCL
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -27,13 +27,13 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname;
-$modversion['version']          = '2.43';
-$modversion['detailed_version'] = '2.43.3';
+$modversion['version']          = '2.45';
+$modversion['detailed_version'] = '2.45.0';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp. - peak.ne.jp';
 $modversion['credits']          = 'PEAK Corp. Update by XOOPS-X (10) and refactoring by @gigamaster (XCL PHP7)';
 $modversion['license']          = 'GPL';
-$modversion['image']            = '/images/module_pico.svg';
+$modversion['image']            = '/images/module_image.svg';
 $modversion['icon']             = 'images/module_icon.svg';
 $modversion['help']             = 'help.html';
 $modversion['official']         = 0;
@@ -160,22 +160,22 @@ $modversion['config'][1] = [
 ];
 
 $modversion['config'][] = [
-    'name'        => 'htmlheader',
-    'title'       => $constpref . '_HTMLHEADER',
-    'description' => '',
-    'formtype'    => 'textarea',
-    'valuetype'   => 'text',
-    'default'     => '',
-    'options'     => []
-];
-
-$modversion['config'][] = [
     'name'        => 'allow_each_htmlheader',
     'title'       => $constpref . '_ALLOWEACHHEAD',
     'description' => '',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'htmlheader',
+    'title'       => $constpref . '_HTMLHEADER',
+    'description' => '',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => '',
     'options'     => []
 ];
 
@@ -193,16 +193,6 @@ $modversion['config'][0] = [
 	'name'        => 'use_wraps_mode',
 	'title'       => $constpref . '_USE_WRAPSMODE',
 	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'use_rewrite',
-	'title'       => $constpref . '_USE_REWRITE',
-	'description' => $constpref . '_USE_REWRITEDSC',
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',
 	'default'     => 0,
@@ -240,6 +230,26 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
+	'name'        => 'sitemap_showcontents',
+	'title'       => $constpref . '_SITEMAP_SC',
+	'description' => '',
+	'formtype'    => 'yesno',
+	'valuetype'   => 'int',
+	'default'     => 0,
+	'options'     => []
+];
+
+$modversion['config'][] = [
+	'name'        => 'use_rewrite',
+	'title'       => $constpref . '_USE_REWRITE',
+	'description' => $constpref . '_USE_REWRITEDSC',
+	'formtype'    => 'yesno',
+	'valuetype'   => 'int',
+	'default'     => 0,
+	'options'     => []
+];
+
+$modversion['config'][] = [
     'name'        => 'search_by_uid',
     'title'       => $constpref . '_SEARCHBYUID',
     'description' => $constpref . '_SEARCHBYUIDDSC',
@@ -265,7 +275,7 @@ $modversion['config'][] = [
     'description' => '',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 300,
+    'default'     => 180,
     'options'     => []
 ];
 
@@ -332,16 +342,6 @@ $modversion['config'][] = [
 $modversion['config'][] = [
 	'name'        => 'use_taf_module',
 	'title'       => $constpref . '_USE_TAFMODULE',
-	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'sitemap_showcontents',
-	'title'       => $constpref . '_SITEMAP_SC',
 	'description' => '',
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',
@@ -498,12 +498,12 @@ $modversion['config'][] = [
 	'options'     => []
 ];
 $modversion['config'][] = [
-    'name'        => $constpref . '_EFIMAGES_QUALITY',
-    'title'       => $constpref . '_EFIMAGES_QUALITYDSC',
-    'description' => 'set the quality for generated images',
+    'name'        => 'extra_images_quality',
+    'title'       => $constpref . '_EFIMAGES_QUALITY',
+    'description' => $constpref . '_EFIMAGES_QUALITYDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 50,
+    'default'     => 75,
     'options'     => []
 ];
 $modversion['config'][] = [

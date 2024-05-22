@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -19,24 +19,12 @@ require_once dirname( __DIR__ ) . '/include/history_functions.php';
 
 class PicoControllerInsertContent extends PicoControllerAbstract {
 
-	//var $mydirname = '' ;
-	//var $mytrustdirname = '' ;
-	//var $assign = array() ;
-	//var $mod_config = array() ;
-	//var $uid = 0 ;
-	//var $currentCategoryObj = null ;
-	//var $permissions = array() ;
-	//var $is_need_header_footer = true ;
-	//var $template_name = '' ;
-	//var $html_header = '' ;
-	//var $contentObjs = array() ;
-
 	public $contentObj;
 
 	public function execute( $request ) {
 		// Ticket Check
 		if ( ! $GLOBALS['xoopsGTicket']->check( true, 'pico' ) ) {
-			redirect_header( XOOPS_URL . '/', 3, $GLOBALS['xoopsGTicket']->getErrors() );
+			redirect_header( XOOPS_URL . '/', 2, $GLOBALS['xoopsGTicket']->getErrors() );
 		}
 
 		parent::execute( $request );
@@ -47,7 +35,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract {
 
 		// permission check
 		if ( empty( $cat_data['can_post'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_MAKECONTENT );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CREATECONTENT );
 		}
 
 		// create content
@@ -89,7 +77,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract {
 				pico_main_trigger_event( $this->mydirname, 'category', $cat_id, 'newcontent', $extra_tags, $users2notify, 0 );
 			}
 			// message "registered"
-			redirect_header( $ret_uri4html, 2, _MD_PICO_MSG_CONTENTMADE );
+			redirect_header( $ret_uri4html, 1, _MD_PICO_MSG_CONTENTMADE );
 		} else {
 			// Notify for new waiting content (only for admin or mod)
 			$users2notify = pico_main_get_moderators( $this->mydirname, $cat_data['id'] );
@@ -98,7 +86,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract {
 			}
 			pico_main_trigger_event( $this->mydirname, 'global', 0, 'waitingcontent', $extra_tags, $users2notify );
 			// message "waiting approval"
-			redirect_header( $ret_uri4html, 2, _MD_PICO_MSG_CONTENTWAITINGREGISTER );
+			redirect_header( $ret_uri4html, 1, _MD_PICO_MSG_CONTENTWAITINGREGISTER );
 		}
 
 		// view

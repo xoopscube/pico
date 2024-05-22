@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Author
+ * @copyright  (c) 2005-2024 Author
  * @license    GPL v2.0
  */
 
@@ -70,7 +70,7 @@ if ( SPECIAL_CAT_ID_ALL === $cat_id ) {
 // contents update
 if ( ! empty( $_POST['contents_update'] ) && ! empty( $_POST['weights'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 1, $xoopsGTicket->getErrors() );
 	}
 
 	$errors = [];
@@ -90,14 +90,14 @@ if ( ! empty( $_POST['contents_update'] ) && ! empty( $_POST['weights'] ) ) {
 	}
 	pico_sync_all( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id", 3, $errors ? sprintf( _MD_A_PICO_MSG_FMT_DUPLICATEDVPATH, implode( ',', $errors ) ) : _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id", 2, $errors ? sprintf( _MD_A_PICO_MSG_FMT_DUPLICATEDVPATH, implode( ',', $errors ) ) : _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
 // contents move
 if ( ! empty( $_POST['contents_move'] ) && ! empty( $_POST['action_selects'] ) && isset( $_POST['dest_cat_id'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	// cat_id check
@@ -118,14 +118,14 @@ if ( ! empty( $_POST['contents_move'] ) && ! empty( $_POST['action_selects'] ) &
 	}
 	pico_sync_all( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id", 3, _MD_A_PICO_MSG_CONTENTSMOVED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id", 1, _MD_A_PICO_MSG_CONTENTSMOVED );
 	exit;
 }
 
 // contents delete
 if ( ! empty( $_POST['contents_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	foreach ( $_POST['action_selects'] as $content_id => $value ) {
@@ -137,14 +137,14 @@ if ( ! empty( $_POST['contents_delete'] ) && ! empty( $_POST['action_selects'] )
 	}
 	pico_sync_all( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id", 3, _MD_A_PICO_MSG_CONTENTSDELETED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id", 1, _MD_A_PICO_MSG_CONTENTSDELETED );
 	exit;
 }
 
 // contents export
 if ( ! empty( $_POST['contents_export'] ) && ! empty( $_POST['action_selects'] ) && ! empty( $_POST['export_mid'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	$export_mid = (int) @$_POST['export_mid'];
@@ -160,7 +160,7 @@ if ( ! empty( $_POST['contents_export'] ) && ! empty( $_POST['action_selects'] )
 		pico_import_a_content_from_pico( $export_module->getVar( 'dirname' ), $xoopsModule->getVar( 'mid' ), $content_id );
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id", 3, _MD_A_PICO_MSG_CONTENTSEXPORTED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=contents&amp;cat_id=$cat_id", 1, _MD_A_PICO_MSG_CONTENTSEXPORTED );
 	exit;
 }
 

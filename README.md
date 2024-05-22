@@ -15,11 +15,11 @@ MODULE | Pico
 ------------ | -------------
 Description | Pico content management module for XCL
 Render Engine | Smarty v2 and XCube Layout
-Version | 2.43.3
+Version | 2.45.0
 Author | Nobuhiro Yasutomi @nbuy XCL PHP8  
 Author | Nuno Luciano @gigamaster XCL PHP7 
 Author | Original by Gijoe (https://peak.ne.jp/)
-Copyright | 2005-2023 Authors
+Copyright | 2005-2024 Authors
 License | GPL
 
 
@@ -27,9 +27,9 @@ License | GPL
 
 
 
-          Apache, Nginx, etc. PHP 7.2 - PHP 8.2
-          MySQL 5.6, MariaDB  InnoDB utf8 / utf8mb4
-          XCL version 2.3.+
+          Apache, Nginx, etc. PHP 8.x.x
+          MySQL 5.7.x, MariaDB  InnoDB utf8 / utf8mb4
+          XCL version 2.4.0
 
 
 

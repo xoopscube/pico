@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -25,7 +25,7 @@ class PicoControllerCopywaitingContent extends PicoControllerAbstract {
 	public function execute( $request ) {
 		// Ticket Check
 		if ( ! $GLOBALS['xoopsGTicket']->check( true, 'pico' ) ) {
-			redirect_header( XOOPS_URL . '/', 3, $GLOBALS['xoopsGTicket']->getErrors() );
+			redirect_header( XOOPS_URL . '/', 2, $GLOBALS['xoopsGTicket']->getErrors() );
 		}
 
 		parent::execute( $request );
@@ -36,14 +36,14 @@ class PicoControllerCopywaitingContent extends PicoControllerAbstract {
 
 		// check existence
 		if ( $this->contentObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 		$content_data = $this->contentObj->getData();
 
 		// permission check (isadminormod)
 		if ( empty( $content_data['isadminormod'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CATEGORYMANAGEMENT );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CATEGORYMANAGEMENT );
 			exit;
 		}
 
@@ -55,7 +55,7 @@ class PicoControllerCopywaitingContent extends PicoControllerAbstract {
 	}
 
 	public function render() {
-		redirect_header( XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_content_link4html( $this->mod_config, $this->contentObj->getData() ), 2, _MD_PICO_MSG_CONTENTUPDATED );
+		redirect_header( XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_content_link4html( $this->mod_config, $this->contentObj->getData() ), 1, _MD_PICO_MSG_CONTENTUPDATED );
 		exit;
 	}
 }

@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -20,7 +20,6 @@ class PicoUriMapper {
 	public function __construct( $mydirname, $config ) {
 		$this->mydirname = $mydirname;
 		$this->config    = $config;
-		$this->request   = [];
 	}
 
 	public function initGet() {
@@ -212,7 +211,7 @@ class PicoUriMapper {
 	public function processWrapPath( $path_info ): ?array {
 		// check wraps mode enabled
 		if ( empty( $this->config['use_wraps_mode'] ) ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 
@@ -272,7 +271,8 @@ class PicoUriMapper {
      * @param $ext
      */
 	public function transferWrappedFile( $wrap_full_path, $ext ): void {
-		// remove output bufferings
+		$mimes = [];
+  // remove output bufferings
 		while ( ob_get_level() ) {
 			ob_end_clean();
 		}

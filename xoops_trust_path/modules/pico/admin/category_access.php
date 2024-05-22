@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -38,11 +38,11 @@ include dirname( __DIR__ ) . '/include/category_permissions.inc.php';
 //
 
 // independent permission update
-if ( ! empty( $_POST['independentpermission_update'] ) && 0 != $cat_id ) {
-	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+if ( !empty( $_POST['independentpermission_update'] ) && 0 != $cat_id) {
+	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
-	if ( ! empty( $_POST['independentpermission'] ) ) {
+	if ( !empty( $_POST['independentpermission'] ) ) {
 		// update permission_id of categories has the same permission_id and children of the category
 		$whr_cid = ! empty( $redundants['subcategories_ids_cs'] ) ? 'cat_id IN (' . $redundants['subcategories_ids_cs'] . $cat_id . ')' : 'cat_id=' . $cat_id;
 		$db->queryF( 'UPDATE ' . $db->prefix( $mydirname . '_categories' ) . " SET cat_permission_id=$cat_id WHERE cat_permission_id=$cat_permission_id AND ($whr_cid)" );
@@ -54,20 +54,20 @@ if ( ! empty( $_POST['independentpermission_update'] ) && 0 != $cat_id ) {
 		// update permission_id of categories which permission_id is the cat_id
 		$db->queryF( 'UPDATE ' . $db->prefix( $mydirname . '_categories' ) . ' SET cat_permission_id=' . (int) $cat_permission_id . " WHERE cat_permission_id=$cat_id" );
 	}
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 3, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 1, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
 
 // group update
-if ( ! empty( $_POST['group_update'] ) ) {
-	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+if ( !empty( $_POST['group_update'] ) ) {
+	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 	$db->queryF( 'DELETE FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . " WHERE cat_id=$cat_id AND groupid>0" );
 	$result = $db->query( 'SELECT groupid FROM ' . $db->prefix( 'groups' ) );
-	while ( list( $gid ) = $db->fetchRow( $result ) ) {
-		if ( ! empty( $_POST['can_read'][ $gid ] ) ) {
+	while ( [$gid] = $db->fetchRow( $result ) ) {
+		if ( !empty( $_POST['can_read'][ $gid ] ) ) {
 			$perms = [];
 			foreach ( $pico_category_permissions as $perm_name ) {
 				$perms[ $perm_name ] = empty( $_POST[ $perm_name ][ $gid ] ) ? 0 : 1;
@@ -75,14 +75,14 @@ if ( ! empty( $_POST['group_update'] ) ) {
 			$db->queryF( 'INSERT INTO ' . $db->prefix( $mydirname . '_category_permissions' ) . " (cat_id,groupid,permissions) VALUES ($cat_id,$gid," . $db->quoteString( serialize( $perms ) ) . ')' );
 		}
 	}
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 3, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 1, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
 // user update
-if ( ! empty( $_POST['user_update'] ) ) {
-	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+if ( !empty( $_POST['user_update'] ) ) {
+	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 	$db->queryF( 'DELETE FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . " WHERE cat_id=$cat_id AND uid>0" );
 
@@ -110,13 +110,13 @@ if ( ! empty( $_POST['user_update'] ) ) {
 				$uname    = $db->quoteString( @$_POST['new_unames'][ $i ] );
 				$uname    = substr( $uname, 1, - 1 );
 				$criteria = new Criteria( 'uname', $uname );
-				@list( $user ) = $member_handler->getUsers( $criteria );
+				@[$user] = $member_handler->getUsers( $criteria );
 			} else {
 				// add new user by uid
 				$user = &$member_handler->getUser( (int) $_POST['new_uids'][ $i ] );
 			}
 			// check the user is valid
-			if ( ! is_object( $user ) ) {
+			if ( !is_object( $user ) ) {
 				continue;
 			}
 			$uid = $user->getVar( 'uid' );
@@ -129,7 +129,7 @@ if ( ! empty( $_POST['user_update'] ) ) {
 		}
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 3, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 1, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
@@ -173,7 +173,7 @@ foreach ( $groups as $group ) {
 $users4assign = [];
 $cprs         = $db->query( 'SELECT u.uid,u.uname,cp.permissions FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . ' cp LEFT JOIN ' . $db->prefix( 'users' ) . " u ON cp.uid=u.uid WHERE cp.cat_id=$cat_permission_id AND cp.groupid IS NULL ORDER BY u.uid " );
 $user_trs     = '';
-while ( list( $uid, $uname, $serialized_upermissions ) = $db->fetchRow( $cprs ) ) {
+while ( [$uid, $uname, $serialized_upermissions] = $db->fetchRow( $cprs ) ) {
 
 	$uid          = (int) $uid;
 	$upermissions = pico_common_unserialize( $serialized_upermissions );

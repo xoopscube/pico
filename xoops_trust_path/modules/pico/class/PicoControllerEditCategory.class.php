@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -15,18 +15,6 @@ require_once __DIR__ . '/PicoModelCategory.class.php';
 require_once __DIR__ . '/gtickets.php';
 
 class PicoControllerEditCategory extends PicoControllerAbstract {
-
-	//var $mydirname = '' ;
-	//var $mytrustdirname = '' ;
-	//var $assign = array() ;
-	//var $mod_config = array() ;
-	//var $uid = 0 ;
-	//var $currentCategoryObj = null ;
-	//var $permissions = array() ;
-	//var $is_need_header_footer = true ;
-	//var $template_name = '' ;
-	//var $html_header = '' ;
-	//var $contentObjs = array() ;
 
 	public function execute( $request ) {
 		parent::execute( $request );
@@ -40,13 +28,13 @@ class PicoControllerEditCategory extends PicoControllerAbstract {
 
 		// check existence
 		if ( $categoryObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 
 		// fetch data from DB
 		$cat_data                            = $categoryObj->getData();
-		$this->assign['category_base']       = $categoryObj->getData4html( true );
+		$this->assign['category_base']       = $categoryObj->getData4html();
 		$this->categoryObjs['category_base'] = &$categoryObj;
 		$this->assign['category']            = $categoryObj->getData4edit();
 
@@ -54,11 +42,11 @@ class PicoControllerEditCategory extends PicoControllerAbstract {
 		if ( 'makecategory' === $page ) {
 			$pcat_data = $this->currentCategoryObj->getData();
 			if ( empty( $pcat_data['can_makesubcategory'] ) ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CREATECATEGORY );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CREATECATEGORY );
 			}
 		} else {
 			if ( empty( $cat_data['isadminormod'] ) ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CATEGORYMANAGEMENT );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CATEGORYMANAGEMENT );
 			}
 		}
 

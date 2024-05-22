@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -23,9 +23,9 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 			global $xoopsConfig;
 
 			// language file
-			if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && strpos( $xoopsConfig['language'], '/' ) === false && file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml' ) ) {
-				include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml';
-			}
+//			if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && strpos( $xoopsConfig['language'], '/' ) === false && file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml' ) ) {
+//				include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml';
+//			}
 
 			// default messages
 			if ( empty( $this->messages ) ) {
@@ -82,7 +82,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 			}
 
 			// limit max stubs 10
-			if ( count( $_SESSION['XOOPS_G_STUBS'] ) > 10 ) {
+			if ( (is_countable($_SESSION['XOOPS_G_STUBS']) ? count( $_SESSION['XOOPS_G_STUBS'] ) : 0) > 10 ) {
 				$_SESSION['XOOPS_G_STUBS'] = array_slice( $_SESSION['XOOPS_G_STUBS'], - 10 );
 			}
 
@@ -162,7 +162,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 				if ( @$found_stub['area'] === $area ) {
 					$area_check = true;
 				}
-				if ( ! empty( $found_stub['referer'] ) && strpos( @$_SERVER['HTTP_REFERER'], $found_stub['referer'] ) !== false ) {
+				if ( ! empty( $found_stub['referer'] ) && strpos( @$_SERVER['HTTP_REFERER'], (string) $found_stub['referer'] ) !== false ) {
 					$referer_check = true;
 				}
 
@@ -309,6 +309,6 @@ if ( ! function_exists( 'admin_refcheck' ) ) {
 			$cr .= $chkref;
 		}
 
-		return ! ( 0 !== strpos( $ref, $cr ) );
+		return ! ( 0 !== strpos( $ref, (string) $cr ) );
 	}
 }

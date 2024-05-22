@@ -3,14 +3,15 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
 function b_sitemap_pico( $mydirname ) {
+
 	include_once __DIR__ . '/common_functions.php';
 
 	$submenus = pico_common_get_submenu( $mydirname, 'sitemap_plugin' );
@@ -28,7 +29,9 @@ function b_sitemap_pico( $mydirname ) {
 			'image' => 1,
 		];
 		if ( $show_subcat && ! empty( $submenu['sub'] ) ) {
-			$ret['parent'][ $p_count ]['child'] = b_sitemap_pico_crawl_submenu( $submenu['sub'], 2 );
+			// todo gigamaster merge subcategories
+			 //$ret['parent'][ $p_count ]['child'] = b_sitemap_pico_crawl_submenu( $submenu['sub'], 2 );
+			 $ret['parent'] = b_sitemap_pico_crawl_submenu( $submenu['sub'], 2 );  
 		}
 		$p_count ++;
 	}
@@ -38,7 +41,7 @@ function b_sitemap_pico( $mydirname ) {
 
 function b_sitemap_pico_crawl_submenu( $submenus, $depth = 2 ) {
 	$ret = [];
-
+	
 	if ( $depth > 4 ) {
 		$depth = 4;
 	}
@@ -52,6 +55,6 @@ function b_sitemap_pico_crawl_submenu( $submenus, $depth = 2 ) {
 			$ret = array_merge( $ret, b_sitemap_pico_crawl_submenu( $subsubmenu['sub'], $depth + 1 ) );
 		}
 	}
-
+	
 	return $ret;
 }

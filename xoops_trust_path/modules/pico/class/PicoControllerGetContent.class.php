@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -15,18 +15,6 @@ require_once __DIR__ . '/PicoModelCategory.class.php';
 require_once __DIR__ . '/PicoModelContent.class.php';
 
 class PicoControllerGetContent extends PicoControllerAbstract {
-
-	//var $mydirname = '' ;
-	//var $mytrustdirname = '' ;
-	//var $assign = array() ;
-	//var $mod_config = array() ;
-	//var $uid = 0 ;
-	//var $currentCategoryObj = null ;
-	//var $permissions = array() ;
-	//var $is_need_header_footer = true ;
-	//var $template_name = '' ;
-	//var $html_header = '' ;
-	//var $contentObjs = array() ;
 
 	public function execute( $request ) {
 		parent::execute( $request );
@@ -48,15 +36,15 @@ class PicoControllerGetContent extends PicoControllerAbstract {
 		// permission check
 		if ( empty( $content_data['can_read'] ) || empty( $content_data['can_readfull'] ) ) {
 			if ( $this->uid > 0 ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_PERMREADFULL );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_PERMREADFULL );
 			} else {
-				redirect_header( XOOPS_URL . '/user.php', 2, _MD_PICO_ERR_LOGINTOREADFULL );
+				redirect_header( XOOPS_URL . '/user.php', 1, _MD_PICO_ERR_LOGINTOREADFULL );
 			}
 			exit;
 		}
 
 		// auto-register
-		if ( ! empty( $this->mod_config['wraps_auto_register'] ) && '/' === @$cat_data['cat_vpath'][0] && 0 === $content_data['poster_uid'] && '' !== $content_data['vpath'] ) {
+		if ( !empty( $this->mod_config['wraps_auto_register'] ) && '/' === @$cat_data['cat_vpath'][0] && 0 === $content_data['poster_uid'] && '' !== $content_data['vpath'] ) {
 			$register_class = empty( $this->mod_config['auto_register_class'] ) ? 'PicoAutoRegisterWraps' : $this->mod_config['auto_register_class'];
 			require_once __DIR__ . '/' . $register_class . '.class.php';
 			$register_obj = new $register_class( $this->mydirname, $this->mod_config );
@@ -101,7 +89,7 @@ class PicoControllerGetContent extends PicoControllerAbstract {
 			$this->assign['categories_can_read'][ $tmp_data['id'] ] = str_repeat( '--', $tmp_data['cat_depth_in_tree'] ) . $tmp_data['cat_title'];
 		}
 
-		// count up 'viewed'
+		// count up 'viewed' - comment out if 'modifier_ip' for local views
 		if ( $content_data['modifier_ip'] !== @$_SERVER['REMOTE_ADDR'] ) {
 			$contentObj->incrementViewed();
 		}

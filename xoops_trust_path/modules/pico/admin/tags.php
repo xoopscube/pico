@@ -3,11 +3,11 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -24,7 +24,7 @@ $myts = &PicoTextSanitizer::sGetInstance();
 
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-$allowed_orders = array( 'count ASC', 'count DESC', 'weight ASC', 'weight DESC', 'label ASC', 'label DESC' );
+$allowed_orders = ['count ASC', 'count DESC', 'weight ASC', 'weight DESC', 'label ASC', 'label DESC'];
 
 //
 // transaction stage
@@ -33,7 +33,7 @@ $allowed_orders = array( 'count ASC', 'count DESC', 'weight ASC', 'weight DESC',
 // tags update
 if ( ! empty( $_POST['tags_update'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	foreach ( array_keys( $_POST['labels'] ) as $old_label ) {
@@ -49,7 +49,7 @@ if ( ! empty( $_POST['tags_update'] ) ) {
 			$old_label4sql = $db->quoteString( $old_label );
 			$old_label4sql = substr( $old_label4sql, 1, - 1 );
 			$result        = $db->query( "SELECT content_id,tags FROM " . $db->prefix( $mydirname . "_contents WHERE tags LIKE '%" . $old_label4sql . "%'" ) );
-			while ( list( $content_id, $tags ) = $db->fetchRow( $result ) ) {
+			while ( [$content_id, $tags] = $db->fetchRow( $result ) ) {
 				$tags_array = array_flip( explode( ' ', $tags ) );
 				if ( isset( $tags_array[ $old_label ] ) ) {
 					$tags_array[ $new_label ] = $tags_array[ $old_label ];
@@ -62,7 +62,7 @@ if ( ! empty( $_POST['tags_update'] ) ) {
 	}
 	pico_sync_tags( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=tags", 3, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=tags", 1, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
@@ -70,7 +70,7 @@ if ( ! empty( $_POST['tags_update'] ) ) {
 // tags delete
 if ( ! empty( $_POST['tags_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	foreach ( $_POST['action_selects'] as $label => $value ) {
@@ -84,7 +84,7 @@ if ( ! empty( $_POST['tags_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 
 		// update tags field in contents table
 		$result = $db->query( "SELECT content_id,tags FROM " . $db->prefix( $mydirname . "_contents WHERE tags LIKE '%" . $label4sql . "%'" ) );
-		while ( list( $content_id, $tags ) = $db->fetchRow( $result ) ) {
+		while ( [$content_id, $tags] = $db->fetchRow( $result ) ) {
 			$tags_array = array_flip( explode( ' ', $tags ) );
 			if ( isset( $tags_array[ $label ] ) ) {
 				unset( $tags_array[ $label ] );
@@ -95,7 +95,7 @@ if ( ! empty( $_POST['tags_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 	}
 	pico_sync_tags( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=tags", 3, _MD_A_PICO_MSG_DELETED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=tags", 1, _MD_A_PICO_MSG_DELETED );
 	exit;
 }
 
@@ -152,19 +152,19 @@ include __DIR__ . '/mymenu.php';
 
 $tpl = new XoopsTpl();
 
-$tpl->assign( array(
-	'mydirname'      => $mydirname,
-	'mod_name'       => $xoopsModule->getVar( 'name' ),
-	'mod_url'        => XOOPS_URL . '/modules/' . $mydirname,
-	'mod_imageurl'   => XOOPS_URL . '/modules/' . $mydirname . '/' . $xoopsModuleConfig['images_dir'],
-	'mod_config'     => $xoopsModuleConfig,
-	'tags'           => $tags4assign,
-	'num'            => $num,
-	'order'          => $order,
-	'allowed_orders' => $allowed_orders,
-	'pagenav'        => $pagenav,
-	'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__, 1800, 'pico_admin' ),
-) );
+$tpl->assign( [
+'mydirname'      => $mydirname, 
+'mod_name'       => $xoopsModule->getVar( 'name' ), 
+'mod_url'        => XOOPS_URL . '/modules/' . $mydirname, 
+'mod_imageurl'   => XOOPS_URL . '/modules/' . $mydirname . '/' . $xoopsModuleConfig['images_dir'], 
+'mod_config'     => $xoopsModuleConfig, 
+'tags'           => $tags4assign, 
+'num'            => $num, 
+'order'          => $order, 
+'allowed_orders' => $allowed_orders, 
+'pagenav'        => $pagenav, 
+'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__, 1800, 'pico_admin' )
+] );
 
 $tpl->display( 'db:' . $mydirname . '_admin_tags.html' );
 

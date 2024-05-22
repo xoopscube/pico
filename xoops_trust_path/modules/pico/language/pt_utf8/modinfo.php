@@ -30,8 +30,8 @@ define($constpref.'_EFIMAGES_DIR','directory for extra_fields');
 define($constpref.'_EFIMAGES_DIRDSC','set relative path from XOOPS_ROOT_PATH. Create and chmod 777 the directory first. default) uploads/(module dirname)');
 define($constpref.'_EFIMAGES_SIZE', 'Extra images generated from the upload file' );
 define($constpref.'_EFIMAGES_SIZEDSC', 'Used in article header and theme Open Graph. Default values in pixels, width x height : 1200x627 820x312 640x360' );
-define($constpref.'_EFIMAGES_QUALITY', 'Extra Image quality compression' );
-define($constpref.'_EFIMAGES_QUALITYDSC', 'minimize' );
+define($constpref.'_EFIMAGES_QUALITY', 'Extra Images quality compression' );
+define($constpref.'_EFIMAGES_QUALITYDSC', 'Set the quality for generated images. Reduce the file size of your files.' );
 define($constpref.'_IMAGICK_PATH','Path for ImageMagick binaries');
 define($constpref.'_IMAGICK_PATHDSC','Leave blank normal, or set it like /usr/X11R6/bin/');
 define($constpref.'_NOTCAT_CATEGORY','category');
@@ -50,7 +50,7 @@ define($constpref.'_ALLOWEACHHEAD','specify HTML headers for each contents');
 define($constpref.'_BNAME_TAGS','Tags');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-22 03:55:48
-define($constpref.'_ADMENU_EXTRAS','Extra');
+define($constpref.'_ADMENU_EXTRAS','Extra forms');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-18 10:36:06
 define($constpref.'_HTMLPR_EXCEPT','Groups can avoid purification by HTMLPurifier');
@@ -65,6 +65,7 @@ define($constpref."_NAME","pico");
 define($constpref."_DESC","Módulo avançado para edição de conteúdo dinâmico e encapsulamento de conteúdo estático");
 
 // admin menus
+define( $constpref . '_ADMENU_ACTIVITY', 'Atividade' );
 define($constpref."_ADMENU_CONTENTSADMIN","Conteúdo");
 define($constpref."_ADMENU_CATEGORYACCESS","Categorias");
 define($constpref."_ADMENU_IMPORT","Importar/sincronizar");

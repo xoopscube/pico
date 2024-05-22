@@ -3,10 +3,10 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Author
+ * @copyright  (c) 2005-2024 Author
  * @license    GPL v2.0
  */
 
@@ -28,7 +28,7 @@ $db = XoopsDatabaseFactory::getDatabaseConnection();
 //
 
 // extras output
-if ( ! empty( $_POST['extras_output'] ) && is_array( @$_POST['action_selects'] ) ) {
+if ( !empty( $_POST['extras_output'] ) && is_array( $_POST['action_selects'] ) ) {
 	$extra_rows = [];
 	$columns    = [ 'id' => 0, 'content_id' => 0, 'type' => '', 'created' => '', 'modified' => '' ];
 	foreach ( $_POST['action_selects'] as $extra_id => $value ) {
@@ -38,7 +38,7 @@ if ( ! empty( $_POST['extras_output'] ) && is_array( @$_POST['action_selects'] )
 		$extra_id  = (int) $extra_id;
 		$extra_row = $db->fetchArray( $db->query( 'SELECT ce.*,o.vpath,o.subject AS content_subject FROM ' . $db->prefix( $mydirname . '_content_extras' ) . ' ce LEFT JOIN ' . $db->prefix( $mydirname . '_contents' ) . " o ON o.content_id=ce.content_id WHERE content_extra_id=$extra_id" ) );
 		$data      = pico_common_unserialize( $extra_row['data'] );
-		if ( ! is_array( $data ) ) {
+		if ( !is_array( $data ) ) {
 			$data = [ $extra_row['data'] ];
 		}
 		$extra_rows[] = [
@@ -85,7 +85,7 @@ if ( ! empty( $_POST['extras_output'] ) && is_array( @$_POST['action_selects'] )
 // extras delete
 if ( ! empty( $_POST['extras_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	foreach ( $_POST['action_selects'] as $extra_id => $value ) {
@@ -96,11 +96,9 @@ if ( ! empty( $_POST['extras_delete'] ) && ! empty( $_POST['action_selects'] ) )
 		$db->query( 'DELETE FROM ' . $db->prefix( $mydirname . '_content_extras' ) . " WHERE content_extra_id=$extra_id" );
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=extras", 3, _MD_A_PICO_MSG_DELETED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=extras", 1, _MD_A_PICO_MSG_DELETED );
 	exit;
 }
-
-// extras delete
 
 //
 // form stage

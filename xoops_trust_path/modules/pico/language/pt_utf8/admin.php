@@ -6,7 +6,7 @@
 // ## Website........: http://xoopscube.com.br
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-11-19 04:29:55
-define( '_MD_A_PICO_LINK_EXTRACT' , 'Extract');
+define( '_MD_A_PICO_LINK_EXTRACT' , 'Delete');
 define( '_MD_A_PICO_LABEL_SEARCHBYPHRASE' , 'Search by phrase');
 define( '_MD_A_PICO_H2_TAGS' , 'Tag Manager');
 define( '_MD_A_PICO_TH_TAG' , 'Tag');
@@ -14,15 +14,15 @@ define( '_MD_A_PICO_TH_USED' , 'Used');
 define( '_MD_A_PICO_LABEL_ORDER' , 'Order');
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-09-07 05:14:32
-define( '_MD_A_PICO_H2_CLEARBODYCACHE' , 'Clear body cache');
+define( '_MD_A_PICO_H2_CLEARBODYCACHE' , 'Clear compiled cache');
 define( '_MD_A_PICO_BTN_DOCLEARBODYCACHE' , 'clear');
 define( '_MD_A_PICO_MSG_CLEARBODYCACHEDONE' , 'all caches for contents have just been cleared');
 define( '_MD_A_PICO_HELP_CLEARBODYCACHE' , 'Just execute it when some caching troubles are occurred eg) after moving site.');
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-04-23 04:51:13
-define( '_MD_A_PICO_H2_INDEPENDENTPERMISSION' , 'Independent Permission');
-define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'Set permissions for this category independently from the parent category');
-define( '_MD_A_PICO_LINK_CATPERMISSIONID' , 'Check the parental permissions');
+define( '_MD_A_PICO_H2_INDEPENDENTPERMISSION' , 'Crie um conjunto exclusivo de permissões.');
+define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'Este elemento atualmente herda permissões de seu pai. Você pode marcar a caixa de seleção e enviar para configurar permissões exclusivas para esta categoria.');
+define( '_MD_A_PICO_LINK_CATPERMISSIONID' , 'Check the parent permissions');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-10-04 05:27:55
 define( '_MD_A_PICO_LINK_DETAIL' , 'Detail');
@@ -68,7 +68,7 @@ define( '_MD_A_PICO_MSG_IMPORTDONE' , "Importado corretamente");
 define( '_MD_A_PICO_MSG_SYNCALLDONE' , "Sincronizado corretamente");
 define( '_MD_A_PICO_NOTICE_ADDUSERS' , "Você pode conceder ou negar permissões a usuários específicos.<br>Adicione o <b>uid</b> ou <b>uname</b> do usuário e atribua as permissões.");
 define( '_MD_A_PICO_TH_CONTENTSACTIONS' , "Ações");
-define( '_MD_A_PICO_TH_CONTENTSALLOWCOMMENT' , "Comentários");
+define( '_MD_A_PICO_TH_CONTENTSALLOWCOMMENT' , "Com");
 define( '_MD_A_PICO_TH_CONTENTSFILTERS' , "Filtros");
 define( '_MD_A_PICO_TH_CONTENTSID' , "Número");
 define( '_MD_A_PICO_TH_CONTENTSSHOWINMENU' , "Menu");
@@ -84,3 +84,9 @@ define( '_MD_A_PICO_TH_UNAME' , "Codinome");
 define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
 define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
 define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');
+
+// ACTIVITY
+define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , 'Atividade Geral');
+define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , 'Conteúdo expirado e programado');
+define( '_MD_A_PICO_ACTIVITY_INTERVAL' , 'dias de intervalo antes e depois de hoje');
+define( '_MD_A_PICO_ACTIVITY_LATEST' , 'últimos conteúdos programados');

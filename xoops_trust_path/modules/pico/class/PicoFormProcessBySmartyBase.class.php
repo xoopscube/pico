@@ -3,17 +3,17 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/FormProcessByHtml.class.php';
 
 class PicoFormProcessBySmartyBase {
-	public $mypluginname;
+	public $mypluginname = 'base';
 	public $mydirname;
 	public $mod_url;
 	public $content4disp;
@@ -44,13 +44,13 @@ class PicoFormProcessBySmartyBase {
 	public $ignore_field_names = [ 'cancel' ]; // public
 	public $cancel_field_name = 'cancel'; // public
 
-	public function PicoFormProcessBySmartyBase(): PicoFormProcessBySmartyBase {
-		return $this->__construct();
-	}
+//	public function PicoFormProcessBySmartyBase(): PicoFormProcessBySmartyBase {
+//		return $this->__construct();
+//	}
 
-	public function __construct() {
-		$this->mypluginname = 'base';
-	}
+	public function __construct()
+ {
+ }
 
 	public function init( $params, $smarty ): void {
 		$this->mydirname     = $smarty->_tpl_vars['mydirname'];
@@ -145,8 +145,9 @@ class PicoFormProcessBySmartyBase {
 	public function checkCurrentPage(): bool {
 		global $xoopsModule;
 
+        $page = $_GET['page'] ?? 'index';
 		// session clear in contentmanager or makecontent
-		if ( in_array( $_GET['page'], [ 'contentmanager', 'makecontent' ] ) ) {
+		if ( in_array( $page, [ 'contentmanager', 'makecontent' ] ) ) {
 			unset( $_SESSION[ $this->session_index ] );
 
 			return false;
@@ -181,7 +182,7 @@ class PicoFormProcessBySmartyBase {
 		// get captured form
 		if ( ! empty( $params['name'] ) && ! empty( $smarty->_smarty_vars['capture'][ $params['name'] ] ) ) {
 			$this->form_body = $smarty->_smarty_vars['capture'][ $params['name'] ];
-		} elseif ( count( $smarty->_smarty_vars['capture'] ) > 0 ) {
+		} elseif ( (is_countable($smarty->_smarty_vars['capture']) ? count( $smarty->_smarty_vars['capture'] ) : 0) > 0 ) {
 			$this->form_body = $smarty->_smarty_vars['capture']['default'];
 		} else {
 			echo '<em>confirm <{capture}><{/capture}> block exists before this tag</em>';
@@ -223,7 +224,7 @@ class PicoFormProcessBySmartyBase {
 		if ( ! headers_sent() && ! $this->isMobile() ) {
 			header( 'Location: ' . $this->content_uri );
 		} else {
-			redirect_header( htmlspecialchars( $this->content_uri, ENT_QUOTES ), 3, '&nbsp;' );
+			redirect_header( htmlspecialchars( $this->content_uri, ENT_QUOTES ), 1, '&nbsp;' );
 		}
 		exit;
 	}
@@ -269,7 +270,7 @@ class PicoFormProcessBySmartyBase {
 		                                              . $this->getTokenName()
 		                                              . '" value="'
 		                                              . $this->getTokenValue()
-		                                              . '" /></form>';
+		                                              . '"></form>';
 	}
 
 	public function displayFinished(): void {
@@ -478,7 +479,8 @@ class PicoFormProcessBySmartyBase {
 	}
 
 	public function isValidEmail( $email ): bool {
-		return preg_match( '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $email ) ? true : false;
+		//return preg_match( '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $email ) ? true : false;
+        return (bool)preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $email);
 	}
 
 	public function storeDB(): void {
