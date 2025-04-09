@@ -91,3 +91,71 @@ Each content can have its own header (css and javascript) and embed content, or 
 - tag
 - hierarchical permission system (succeeding or independent as you like)
 - waiting/expiring contents
+
+## Pico Module Filters Feature
+
+The filters feature in the Pico module is a powerful content processing system that transforms raw content into formatted output. Let's explore how it works:
+
+## What are Filters in Pico?
+
+Filters are processing functions that take raw content and transform it in some way before displaying it to users. They're essentially content processors that can:
+
+1. Convert markup to HTML
+2. Apply formatting rules
+3. Execute code within content
+4. Process templates
+5. Apply security measures
+
+## Types of Filters in Pico
+
+Looking at the codebase, Pico includes several built-in filters:
+
+1. **pico_xcode** - Processes BBCode and XOOPS codes
+2. **pico_textwiki** - Processes Wiki-style markup
+3. **pico_xoopstpl** - Processes Smarty templates within content
+4. **pico_xoopsts** - Uses XOOPS TextSanitizer for processing
+5. **pico_eval** - Evaluates PHP code (admin/moderator only)
+6. **pico_wraps** - Processes content from external files
+7. **pico_xpwiki** - Integration with xpWiki (currently disabled)
+
+## Filter Configuration
+
+Filters can be configured at three levels:
+
+1. **Global level** - Set in module configuration
+2. **Category level** - Set in category options (what you're seeing in the form)
+3. **Content level** - Set for individual content items
+
+The category form allows administrators to override global filter settings for a specific category.  
+This is done through the category options section where you can specify:
+
+- `filters` - Filters to be applied
+- `filters_forced` - Filters that must be applied regardless of content settings
+- `filters_prohibited` - Filters that cannot be used in this category
+
+## Filter Processing
+
+When content is displayed, the system:
+
+1. Determines which filters should be applied based on the configuration
+2. Sorts filters by their weight (defined by constants like `_MD_PICO_FILTERS_XCODEINITWEIGHT`)
+3. Applies each filter in sequence
+4. Returns the transformed content
+
+## Security Considerations
+
+> [!CAUTION]
+> Filters available only to administrators or moderators.
+
+Some filters are marked as insecure (like `pico_eval` and `pico_xoopstpl`) and can only be used by administrators or moderators.  
+This is controlled by constants like `_MD_PICO_FILTERS_EVALISINSECURE`.
+
+## Editor Integration
+
+Each filter defines which editor should be used when creating content with that filter through constants like `_MD_PICO_FILTERS_XCODEEDITOR`.  
+This ensures the editing interface matches the expected input format.
+
+The category options in the form allow administrators to customize these filter settings for all content within a specific category,  
+providing a flexible way to control content processing.
+
+
