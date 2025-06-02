@@ -6,7 +6,7 @@
  * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
 
@@ -326,4 +326,11 @@ if ( ! function_exists( 'htmlspecialchars_ent' ) ) {
 	function htmlspecialchars_ent( $string ) {
 		return htmlspecialchars( $string, ENT_QUOTES );
 	}
+}
+
+// Include error handler but check if $mydirname is defined before using it
+include_once __DIR__ . '/error_handler.php';
+// Only register the error handler when the module dirname is defined
+if (isset($mydirname) && $mydirname) {
+    pico_register_error_handler($mydirname);
 }

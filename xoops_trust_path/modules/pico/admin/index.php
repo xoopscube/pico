@@ -2,9 +2,9 @@
 /**
  * Pico content management D3 module for XCL
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Nuno Luciano aka Gigamaster, 2020 XCL PHP7
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
 
@@ -30,7 +30,14 @@ $active = $xoopsDB->query($query);
 $total = $active->fetch_array();
 
 // QUERY SETTINGS
-$items = 10; // TODO Limit of items to display and pagination
+$default_items = 10; // Default limit of items to display
+$items = isset($_GET['items']) ? (int)$_GET['items'] : $default_items;
+
+// Validate items to only allow specific values
+if (!in_array($items, [10, 20, 30])) {
+    $items = $default_items;
+}
+
 $days  = 5; /* interval scheduled to expire, default 5 */
 
 // QUERY DB
@@ -106,7 +113,8 @@ $tpl->assign(
         'totalApproval' =>$total['totalApproval'],
         'totalExtra'    =>$total['totalExtra'],
         'active'            => $assignActivity,
-        'days'              => $days
+        'days'              => $days,
+        'items'             => $items
 	]
 );
 
